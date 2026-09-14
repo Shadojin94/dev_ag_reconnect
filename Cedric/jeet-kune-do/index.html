@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Académie Jeet Kune Do — Sois comme l'eau</title>
+<meta name="description" content="Le Jeet Kune Do n'est pas un style, c'est une méthode : intercepter plutôt que bloquer, simplifier plutôt que collectionner. Cours d'essai offert, débutants bienvenus.">
+<meta name="theme-color" content="#0b0e14">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Académie Jeet Kune Do">
+<meta property="og:title" content="Académie Jeet Kune Do — Sois comme l'eau">
+<meta property="og:description" content="Intercepter plutôt que bloquer. Simplifier plutôt que collectionner. Une méthode, pas un style.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0e14'/%3E%3Ccircle cx='16' cy='16' r='9.5' fill='none' stroke='%235fd4e8' stroke-width='1.8'/%3E%3Cpath d='M16 6.5a4.75 4.75 0 0 0 0 9.5 4.75 4.75 0 0 1 0 9.5' fill='none' stroke='%23ff6a3d' stroke-width='1.8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
+
+<!-- ============================================================= 1 · NAV -->
+<header class="topbar">
+  <a class="brand" href="#hero">
+    <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+      <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".55"/>
+      <path d="M20 6a7 7 0 0 0 0 14 7 7 0 0 1 0 14" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M31 11.5 36 16l-6.4 1.6" fill="none" stroke="var(--ember)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand__text">
+      <span class="brand__word">JKD</span>
+      <span class="brand__sub">Académie Jeet&nbsp;Kune&nbsp;Do</span>
+    </span>
+  </a>
+
+  <nav class="topnav" aria-label="Navigation principale">
+    <ul>
+      <li><a href="#methode">La méthode</a></li>
+      <li><a href="#portees">Les portées</a></li>
+      <li><a href="#programmes">Programmes</a></li>
+      <li><a href="#faq">Questions</a></li>
+    </ul>
+  </nav>
+
+  <a class="btn btn--ghost topbar__cta" href="#essai">Cours d'essai</a>
+</header>
+
+<!-- Rail de navigation du deck (≥ 1024 px) -->
+<nav class="rail" aria-label="Sections de la page">
+  <ul>
+    <li><a href="#hero" data-rail="hero"><span class="rail__dot"></span><span class="rail__label">Ouverture</span></a></li>
+    <li><a href="#constat" data-rail="constat"><span class="rail__dot"></span><span class="rail__label">Le constat</span></a></li>
+    <li><a href="#methode" data-rail="methode"><span class="rail__dot"></span><span class="rail__label">La méthode</span></a></li>
+    <li><a href="#portees" data-rail="portees"><span class="rail__dot"></span><span class="rail__label">Les portées</span></a></li>
+    <li><a href="#progression" data-rail="progression"><span class="rail__dot"></span><span class="rail__label">Progression</span></a></li>
+    <li><a href="#citations" data-rail="citations"><span class="rail__dot"></span><span class="rail__label">Bruce Lee</span></a></li>
+    <li><a href="#programmes" data-rail="programmes"><span class="rail__dot"></span><span class="rail__label">Programmes</span></a></li>
+    <li><a href="#reperes" data-rail="reperes"><span class="rail__dot"></span><span class="rail__label">Repères</span></a></li>
+    <li><a href="#faq" data-rail="faq"><span class="rail__dot"></span><span class="rail__label">Questions</span></a></li>
+    <li><a href="#essai" data-rail="essai"><span class="rail__dot"></span><span class="rail__label">Essai offert</span></a></li>
+  </ul>
+</nav>
+
+<main id="contenu" class="deck">
+
+  <!-- ========================================================== 2 · HERO -->
+  <section class="deck__section hero" id="hero" aria-labelledby="hero-title">
+    <canvas class="hero__canvas" id="water-canvas" aria-hidden="true"></canvas>
+
+    <!-- Fallback visuel : visible tant que le WebGL n'a pas confirmé -->
+    <div class="hero__fallback" aria-hidden="true">
+      <div class="hero__orb hero__orb--water"></div>
+      <div class="hero__orb hero__orb--ember"></div>
+      <svg class="hero__emblem" viewBox="0 0 400 400" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="200" cy="200" r="150"/>
+          <path d="M200 50a75 75 0 0 1 0 150 75 75 0 0 0 0 150"/>
+        </g>
+        <circle cx="200" cy="125" r="15" fill="currentColor" opacity=".6"/>
+        <circle cx="200" cy="275" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+        <g class="hero__emblem-arrows" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M48.4 112.5A175 175 0 0 1 351.6 112.5"/>
+          <path d="M334.1 102.8 351.6 112.5 351.9 92.5"/>
+          <path d="M351.6 287.5A175 175 0 0 1 48.4 287.5"/>
+          <path d="M65.9 297.2 48.4 287.5 48.1 307.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero__inner wrap">
+      <p class="kicker kicker--hero reveal">以無法為法 <span class="kicker__sep">·</span> using no way as way</p>
+      <h1 class="hero__title reveal" id="hero-title">Sois comme <em>l'eau</em>.</h1>
+      <p class="hero__lede reveal">Le Jeet Kune Do n'est pas un style, c'est une méthode : intercepter plutôt que
+        bloquer, simplifier plutôt que collectionner les techniques.</p>
+      <div class="hero__actions reveal">
+        <a class="btn btn--primary" href="#essai">Réserver un cours d'essai</a>
+        <a class="btn btn--ghost" href="#methode">Voir la méthode</a>
+      </div>
+      <p class="hero__reassure reveal">Premier cours offert <span aria-hidden="true">·</span> Sans engagement <span aria-hidden="true">·</span> Débutants bienvenus</p>
+    </div>
+
+    <a class="scroll-hint" href="#constat" aria-label="Aller à la section suivante">
+      <span class="scroll-hint__text">Descendre</span>
+      <span class="scroll-hint__line" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ======================================================= 3 · CONSTAT -->
+  <section class="deck__section constat" id="constat" aria-labelledby="constat-title">
+    <div class="wrap constat__grid">
+      <div class="constat__head">
+        <p class="kicker reveal">01 — Le constat</p>
+        <h2 class="h2 reveal" id="constat-title">On accumule des techniques. On ne sait toujours pas se défendre.</h2>
+        <p class="lede reveal">Trois frictions reviennent dans les arts martiaux enseignés de façon classique.
+          Le Jeet Kune Do ne les contourne pas : il les prend de face.</p>
+      </div>
+
+      <ol class="frictions stagger" role="list">
+        <li class="friction reveal" style="--i:0">
+          <span class="friction__num" aria-hidden="true">01</span>
+          <div class="friction__body">
+            <h3 class="h3">La forme devient l'objectif</h3>
+            <p class="friction__problem">On répète des enchaînements codifiés pour eux-mêmes, jusqu'à confondre
+              la beauté du geste et son efficacité.</p>
+            <p class="friction__answer"><span class="tag">Réponse JKD</span> un geste se garde s'il fonctionne
+              contre quelqu'un qui résiste. Sinon on le jette, même s'il est joli.</p>
+          </div>
+        </li>
+        <li class="friction reveal" style="--i:1">
+          <span class="friction__num" aria-hidden="true">02</span>
+          <div class="friction__body">
+            <h3 class="h3">La ceinture ne dit rien de ce que tu sais faire</h3>
+            <p class="friction__problem">Une hiérarchie de couleurs mesure surtout l'ancienneté et l'assiduité
+              aux passages de grade.</p>
+            <p class="friction__answer"><span class="tag">Réponse JKD</span> pas de ceinture. Le seul repère,
+              c'est ce que tu arrives à placer, et sur qui.</p>
+          </div>
+        </li>
+        <li class="friction reveal" style="--i:2">
+          <span class="friction__num" aria-hidden="true">03</span>
+          <div class="friction__body">
+            <h3 class="h3">Rien n'est testé sous pression</h3>
+            <p class="friction__problem">Des techniques répétées dans le vide, face à un partenaire coopératif,
+              ne survivent pas au premier adversaire qui refuse de coopérer.</p>
+            <p class="friction__answer"><span class="tag">Réponse JKD</span> mise sous pression progressive et
+              dosée dès les premières semaines, avec un partenaire qui résiste vraiment.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================================================= 4 · METHODE -->
+  <section class="deck__section methode" id="methode" aria-labelledby="methode-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker reveal">02 — La méthode</p>
+        <h2 class="h2 reveal" id="methode-title">Trois principes. Rien d'autre à retenir.</h2>
+        <p class="lede reveal">Bruce Lee a réduit tout son enseignement à trois filtres. Chaque geste appris
+          au cours doit passer les trois, sinon il ne rentre pas dans ton répertoire.</p>
+      </div>
+
+      <div class="principes stagger">
+        <article class="principe reveal" style="--i:0">
+          <span class="principe__num" aria-hidden="true">01</span>
+          <svg class="principe__icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/>
+            <circle cx="24" cy="24" r="2.4" fill="currentColor" stroke="none"/>
+            <path d="M4 44 24 24"/><path d="M4 36.5 4 44l7.5 0"/>
+          </svg>
+          <h3 class="h3">Efficacité</h3>
+          <p>Le geste touche, ou il ne sert à rien. On garde ce qui produit un effet réel sur un adversaire
+            qui bouge, pas ce qui produit un effet sur un jury.</p>
+        </article>
+
+        <article class="principe reveal" style="--i:1">
+          <span class="principe__num" aria-hidden="true">02</span>
+          <svg class="principe__icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path d="M6 24h30" stroke-width="2.4"/>
+            <path d="M30 17.5 37.5 24 30 30.5"/>
+            <path d="M6 24c6-15 18-15 24 0" opacity=".38" stroke-dasharray="3 4"/>
+            <circle cx="6" cy="24" r="2.6" fill="currentColor" stroke="none"/>
+            <circle cx="42" cy="24" r="2.6"/>
+          </svg>
+          <h3 class="h3">Direction</h3>
+          <p>Le chemin le plus court entre toi et la cible. Pas de parade suivie d'une riposte :
+            l'interception <em>est</em> la riposte. Un temps au lieu de deux.</p>
+        </article>
+
+        <article class="principe reveal" style="--i:2">
+          <svg class="principe__icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path d="M6 12h36"/><path d="M10 22h28" opacity=".6"/><path d="M16 32h16" opacity=".38"/>
+            <path d="M22 41.5h4" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="principe__num" aria-hidden="true">03</span>
+          <h3 class="h3">Simplicité</h3>
+          <p>Retirer jusqu'à ce qu'il ne reste que l'essentiel. Un pratiquant n'est pas fort parce qu'il
+            connaît trois cents techniques, mais parce qu'il en maîtrise dix sous pression.</p>
+        </article>
+      </div>
+
+      <aside class="origines reveal">
+        <h3 class="origines__title">D'où vient la méthode</h3>
+        <p class="origines__text">Le Jeet Kune Do est explicitement un assemblage documenté, pas une révélation.
+          Bruce Lee y a intégré ce qui fonctionnait, d'où que ça vienne.</p>
+        <ul class="origines__list" role="list">
+          <li><strong>Wing Chun</strong><span>base technique d'origine — ligne centrale, travail rapproché</span></li>
+          <li><strong>Escrime occidentale</strong><span>l'interception, le <em>stop hit</em>, le jeu de distance</span></li>
+          <li><strong>Boxe anglaise</strong><span>footwork, esquives, puissance des mains</span></li>
+          <li><strong>Lutte &amp; judo</strong><span>saisies, projections, combat au corps à corps</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ======================================================= 5 · CHART A -->
+  <section class="deck__section portees" id="portees" aria-labelledby="portees-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker reveal">03 — La distance</p>
+        <h2 class="h2 reveal" id="portees-title">Quatre portées. Tu dois savoir te battre dans les quatre.</h2>
+        <p class="lede reveal">La plupart des disciplines n'en travaillent qu'une ou deux, et deviennent
+          inopérantes dès que la distance change. Le JKD structure l'entraînement sur les quatre.</p>
+      </div>
+
+      <figure class="chart reveal" id="chart-portees">
+        <figcaption class="chart__caption">
+          <span class="chart__title">Les quatre portées de combat</span>
+          <span class="chart__sub">Distance approximative entre les deux pratiquants. Diagramme descriptif
+            du découpage classique du Jeet Kune Do — ce ne sont pas des mesures statistiques.</span>
+        </figcaption>
+
+        <div class="chart__scroll">
+          <svg class="chart__svg chart-a" viewBox="0 0 560 336" role="img"
+               aria-labelledby="ca-title ca-desc" focusable="false">
+            <title id="ca-title">Les quatre portées de combat du Jeet Kune Do, positionnées sur un axe de distance de 0 à 2 mètres</title>
+            <desc id="ca-desc">Quatre barres horizontales : Kicking de 1,2 à 2,0 mètres, Punching de 0,6 à 1,2 mètres, Trapping de 0,3 à 0,6 mètres, Grappling de 0 à 0,3 mètre. La couleur passe du rouge pour la portée la plus lointaine au cyan pour la plus proche.</desc>
+
+            <defs>
+              <linearGradient id="ca-grad" gradientUnits="userSpaceOnUse" x1="540" y1="0" x2="20" y2="0">
+                <stop offset="0" stop-color="var(--ember)"/>
+                <stop offset="0.5" stop-color="var(--gold)"/>
+                <stop offset="1" stop-color="var(--water)"/>
+              </linearGradient>
+            </defs>
+
+            <!-- grille -->
+            <g class="chart__grid">
+              <line x1="20"  y1="24" x2="20"  y2="282"/>
+              <line x1="98"  y1="24" x2="98"  y2="282"/>
+              <line x1="176" y1="24" x2="176" y2="282"/>
+              <line x1="332" y1="24" x2="332" y2="282"/>
+              <line x1="540" y1="24" x2="540" y2="282"/>
+            </g>
+
+            <!-- axe -->
+            <line class="chart__axis" x1="20" y1="282" x2="540" y2="282"/>
+            <g class="chart__tick">
+              <text x="20"  y="300">0</text>
+              <text x="98"  y="300">0,3</text>
+              <text x="176" y="300">0,6</text>
+              <text x="332" y="300">1,2</text>
+              <text x="540" y="300" text-anchor="end">2,0</text>
+            </g>
+            <text class="chart__axis-title" x="20" y="324">Distance à l'adversaire (mètres)</text>
+
+            <!-- barres -->
+            <g class="chart-a__rows">
+              <g style="--i:0">
+                <text class="chart__label" x="332" y="46">Kicking<tspan class="chart__label-num" dx="8">1,2 – 2,0 m</tspan></text>
+                <rect class="chart-a__bar" x="332" y="56" width="208" height="18" rx="4"/>
+              </g>
+              <g style="--i:1">
+                <text class="chart__label" x="176" y="114">Punching<tspan class="chart__label-num" dx="8">0,6 – 1,2 m</tspan></text>
+                <rect class="chart-a__bar" x="176" y="124" width="156" height="18" rx="4"/>
+              </g>
+              <g style="--i:2">
+                <text class="chart__label" x="98" y="182">Trapping<tspan class="chart__label-num" dx="8">0,3 – 0,6 m</tspan></text>
+                <rect class="chart-a__bar" x="98" y="192" width="78" height="18" rx="4"/>
+              </g>
+              <g style="--i:3">
+                <text class="chart__label" x="20" y="250">Grappling<tspan class="chart__label-num" dx="8">0 – 0,3 m</tspan></text>
+                <rect class="chart-a__bar" x="20" y="260" width="78" height="18" rx="4"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <table class="visually-hidden">
+          <caption>Les quatre portées de combat du Jeet Kune Do et leur distance approximative</caption>
+          <thead><tr><th scope="col">Portée</th><th scope="col">Distance minimale</th><th scope="col">Distance maximale</th><th scope="col">Outils dominants</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Kicking</th><td>1,2 m</td><td>2,0 m</td><td>jambes</td></tr>
+            <tr><th scope="row">Punching</th><td>0,6 m</td><td>1,2 m</td><td>poings</td></tr>
+            <tr><th scope="row">Trapping</th><td>0,3 m</td><td>0,6 m</td><td>contrôle des bras, coudes, genoux</td></tr>
+            <tr><th scope="row">Grappling</th><td>0 m</td><td>0,3 m</td><td>saisies, projections, sol</td></tr>
+          </tbody>
+        </table>
+      </figure>
+
+      <p class="note reveal">Le passage d'une portée à l'autre se joue en une fraction de seconde. C'est
+        précisément là que la plupart des pratiquants se font surprendre — et c'est ce qu'on travaille.</p>
+    </div>
+  </section>
+
+  <!-- ======================================================= 6 · CHART B -->
+  <section class="deck__section progression" id="progression" aria-labelledby="progression-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker reveal">04 — La progression</p>
+        <h2 class="h2 reveal" id="progression-title">Un plan sur douze mois, pas une promesse.</h2>
+        <p class="lede reveal">Voici l'ordre dans lequel on construit, et les quatre jalons qui servent de
+          repères. La vitesse réelle dépend de toi : c'est un programme type, pas une garantie de résultat.</p>
+      </div>
+
+      <figure class="chart reveal" id="chart-progression">
+        <figcaption class="chart__caption">
+          <span class="chart__title">Programme type sur 12 mois</span>
+          <span class="chart__sub">Plan pédagogique. L'axe vertical représente l'étendue du répertoire
+            travaillé, pas une mesure de performance ; la courbe entre les jalons est une interpolation
+            illustrative.</span>
+        </figcaption>
+
+        <div class="chart__scroll">
+          <svg class="chart__svg chart-b" viewBox="0 0 640 384" role="img"
+               aria-labelledby="cb-title cb-desc" focusable="false">
+            <title id="cb-title">Programme type du Jeet Kune Do sur douze mois, avec quatre jalons</title>
+            <desc id="cb-desc">Une courbe croissante de M1 à M12 traverse quatre jalons : M1 garde, distance et mobilité ; M3 interception, le stop hit ; M6 trapping et sparring léger ; M12 expression libre.</desc>
+
+            <defs>
+              <linearGradient id="cb-fill" gradientUnits="userSpaceOnUse" x1="0" y1="48" x2="0" y2="340">
+                <stop offset="0" stop-color="var(--water)" stop-opacity="0.20"/>
+                <stop offset="1" stop-color="var(--water)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <g class="chart__grid">
+              <line x1="52" y1="290" x2="588" y2="290"/>
+              <line x1="52" y1="222" x2="588" y2="222"/>
+              <line x1="52" y1="158" x2="588" y2="158"/>
+              <line x1="52" y1="72"  x2="588" y2="72"/>
+            </g>
+
+            <path class="chart-b__area" d="M52 290C96 290 114 232 149.5 222C196 209 238 178 297.6 158C400 124 470 96 588 72L588 340L52 340Z"/>
+            <path class="chart-b__line" pathLength="1" d="M52 290C96 290 114 232 149.5 222C196 209 238 178 297.6 158C400 124 470 96 588 72"/>
+
+            <line class="chart__axis" x1="52" y1="340" x2="588" y2="340"/>
+            <g class="chart__tick">
+              <text x="52"  y="362">M1</text>
+              <text x="149.5" y="362" text-anchor="middle">M3</text>
+              <text x="297.6" y="362" text-anchor="middle">M6</text>
+              <text x="442.9" y="362" text-anchor="middle">M9</text>
+              <text x="588" y="362" text-anchor="end">M12</text>
+            </g>
+
+            <g class="chart-b__marks">
+              <g style="--i:0">
+                <line class="chart-b__leader" x1="52" y1="298" x2="52" y2="308"/>
+                <text class="chart__label" x="52" y="320"><tspan class="chart__label-num">M1</tspan><tspan dx="7">garde, distance, mobilité</tspan></text>
+                <circle class="chart-b__dot" cx="52" cy="290" r="5"/>
+              </g>
+              <g style="--i:1">
+                <line class="chart-b__leader" x1="149.5" y1="230" x2="149.5" y2="240"/>
+                <text class="chart__label" x="149.5" y="252"><tspan class="chart__label-num">M3</tspan><tspan dx="7">interception (stop hit)</tspan></text>
+                <circle class="chart-b__dot" cx="149.5" cy="222" r="5"/>
+              </g>
+              <g style="--i:2">
+                <line class="chart-b__leader" x1="297.6" y1="166" x2="297.6" y2="176"/>
+                <text class="chart__label" x="297.6" y="188"><tspan class="chart__label-num">M6</tspan><tspan dx="7">trapping &amp; sparring léger</tspan></text>
+                <circle class="chart-b__dot" cx="297.6" cy="158" r="5"/>
+              </g>
+              <g style="--i:3">
+                <line class="chart-b__leader" x1="588" y1="80" x2="588" y2="116"/>
+                <text class="chart__label" x="588" y="128" text-anchor="end"><tspan class="chart__label-num">M12</tspan><tspan dx="7">expression libre</tspan></text>
+                <circle class="chart-b__dot" cx="588" cy="72" r="5"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <table class="visually-hidden">
+          <caption>Programme type sur douze mois : les quatre jalons du parcours</caption>
+          <thead><tr><th scope="col">Mois</th><th scope="col">Palier</th><th scope="col">Jalon</th><th scope="col">Contenu travaillé</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">M1</th><td>1 sur 4</td><td>Garde, distance, mobilité</td><td>position, déplacements, lecture de la distance</td></tr>
+            <tr><th scope="row">M3</th><td>2 sur 4</td><td>Interception (stop hit)</td><td>frapper pendant l'attaque adverse plutôt qu'après</td></tr>
+            <tr><th scope="row">M6</th><td>3 sur 4</td><td>Trapping et sparring léger</td><td>contrôle des bras, premières oppositions dosées</td></tr>
+            <tr><th scope="row">M12</th><td>4 sur 4</td><td>Expression libre</td><td>assemblage personnel des outils, sparring complet encadré</td></tr>
+          </tbody>
+        </table>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================================================== 7 · CITATIONS -->
+  <section class="deck__section citations" id="citations" aria-labelledby="citations-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker reveal">05 — La source</p>
+        <h2 class="h2 reveal" id="citations-title">Ce que Bruce Lee en disait lui-même.</h2>
+        <p class="lede reveal">Pas de témoignages d'élèves sur cette page : quatre citations réelles, sourcées,
+          qui suffisent à résumer l'esprit de la méthode.</p>
+      </div>
+
+      <div class="quotes stagger">
+        <figure class="quote reveal" style="--i:0">
+          <blockquote><p>Vide ton esprit. Sois sans forme, sans contours — comme l'eau.</p></blockquote>
+          <p class="quote__vo" lang="en">Empty your mind. Be formless, shapeless — like water.</p>
+          <figcaption>Bruce Lee <span class="quote__src">Longstreet, 1971</span></figcaption>
+        </figure>
+        <figure class="quote reveal" style="--i:1">
+          <blockquote><p>Utiliser l'absence de voie comme voie ; l'absence de limite comme limite.</p></blockquote>
+          <p class="quote__vo" lang="en">Using no way as way; having no limitation as limitation.</p>
+          <figcaption>Bruce Lee <span class="quote__src">devise du Jeet Kune Do</span></figcaption>
+        </figure>
+        <figure class="quote reveal" style="--i:2">
+          <blockquote><p>Absorbe ce qui est utile, rejette ce qui est inutile, ajoute ce qui t'est propre.</p></blockquote>
+          <p class="quote__vo" lang="en">Absorb what is useful, discard what is useless, add what is specifically your own.</p>
+          <figcaption>Bruce Lee <span class="quote__src">Tao of Jeet Kune Do</span></figcaption>
+        </figure>
+        <figure class="quote reveal" style="--i:3">
+          <blockquote><p>Je ne crains pas l'homme qui a pratiqué 10 000 coups de pied une fois, mais celui
+            qui a pratiqué un coup de pied 10 000 fois.</p></blockquote>
+          <p class="quote__vo" lang="en">I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.</p>
+          <figcaption>Bruce Lee <span class="quote__src">citation attribuée</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== 8 · PROGRAMMES -->
+  <section class="deck__section programmes" id="programmes" aria-labelledby="programmes-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker reveal">06 — Les formules</p>
+        <h2 class="h2 reveal" id="programmes-title">Choisis un rythme, pas un grade.</h2>
+        <p class="lede reveal">Trois formules, une seule méthode. Tu peux changer de formule d'un mois sur
+          l'autre : c'est ton rythme de vie qui décide, pas un règlement.</p>
+      </div>
+
+      <div class="plans stagger">
+        <article class="plan reveal" style="--i:0" aria-labelledby="plan-1">
+          <header class="plan__head">
+            <h3 class="h3" id="plan-1">Découverte</h3>
+            <p class="plan__rhythm">1 séance par semaine</p>
+          </header>
+          <p class="plan__price"><span class="plan__amount">—&nbsp;€</span><span class="plan__period">/ mois</span></p>
+          <p class="plan__placeholder">Tarif à définir</p>
+          <ul class="plan__benefits" role="list">
+            <li>Tu repars du premier cours en sachant tenir une distance.</li>
+            <li>Tu apprends à te déplacer avant d'apprendre à frapper.</li>
+            <li>Aucun prérequis physique : le cours s'adapte à ce que tu peux faire aujourd'hui.</li>
+          </ul>
+          <a class="btn btn--ghost plan__cta" href="#essai">Commencer par un essai</a>
+        </article>
+
+        <article class="plan plan--featured reveal" style="--i:1" aria-labelledby="plan-2">
+          <span class="plan__badge">Recommandé</span>
+          <header class="plan__head">
+            <h3 class="h3" id="plan-2">Pratiquant</h3>
+            <p class="plan__rhythm">2 à 3 séances par semaine</p>
+          </header>
+          <p class="plan__price"><span class="plan__amount">—&nbsp;€</span><span class="plan__period">/ mois</span></p>
+          <p class="plan__placeholder">Tarif à définir</p>
+          <ul class="plan__benefits" role="list">
+            <li>Le rythme à partir duquel les réflexes commencent à tenir sous pression.</li>
+            <li>Tu travailles les quatre portées, pas seulement celle qui te met à l'aise.</li>
+            <li>Sparring dosé et encadré, introduit progressivement.</li>
+            <li>Suivi individuel : on te dit ce qui coince, précisément.</li>
+          </ul>
+          <a class="btn btn--primary plan__cta" href="#essai">Réserver mon essai</a>
+        </article>
+
+        <article class="plan reveal" style="--i:2" aria-labelledby="plan-3">
+          <header class="plan__head">
+            <h3 class="h3" id="plan-3">Intensif</h3>
+            <p class="plan__rhythm">4 séances et plus par semaine</p>
+          </header>
+          <p class="plan__price"><span class="plan__amount">—&nbsp;€</span><span class="plan__period">/ mois</span></p>
+          <p class="plan__placeholder">Tarif à définir</p>
+          <ul class="plan__benefits" role="list">
+            <li>Volume de pratique suffisant pour construire ta propre expression du JKD.</li>
+            <li>Accès aux créneaux de sparring libre encadré.</li>
+            <li>Préparation physique orientée combat incluse.</li>
+          </ul>
+          <a class="btn btn--ghost plan__cta" href="#essai">Parler de mon objectif</a>
+        </article>
+      </div>
+
+      <p class="note reveal">Page de démonstration : les montants, les horaires et l'adresse sont des
+        emplacements à remplacer. Aucun tarif réel n'est affiché ici.</p>
+    </div>
+  </section>
+
+  <!-- ======================================================= 9 · REPERES -->
+  <section class="deck__section reperes" id="reperes" aria-labelledby="reperes-title">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <p class="kicker reveal">07 — Repères</p>
+        <h2 class="h2 reveal" id="reperes-title">Quatre chiffres qui décrivent la méthode.</h2>
+      </div>
+
+      <dl class="kpis stagger">
+        <div class="kpi reveal" style="--i:0">
+          <dt class="kpi__label">Année où Bruce Lee nomme le Jeet Kune Do</dt>
+          <dd class="kpi__value"><span class="counter" data-to="1967" data-format="plain">1967</span></dd>
+        </div>
+        <div class="kpi reveal" style="--i:1">
+          <dt class="kpi__label">Principes fondateurs</dt>
+          <dd class="kpi__value"><span class="counter" data-to="3">3</span></dd>
+        </div>
+        <div class="kpi reveal" style="--i:2">
+          <dt class="kpi__label">Portées de combat</dt>
+          <dd class="kpi__value"><span class="counter" data-to="4">4</span></dd>
+        </div>
+        <div class="kpi reveal" style="--i:3">
+          <dt class="kpi__label">Méthodes d'attaque <span class="kpi__hint">SDA · ABC · PIA · HIA · ABD</span></dt>
+          <dd class="kpi__value"><span class="counter" data-to="5">5</span></dd>
+        </div>
+      </dl>
+
+      <p class="note reveal">Ces quatre repères décrivent la structure du Jeet Kune Do telle qu'elle est
+        documentée. Aucun chiffre de fréquentation, de résultat ou de satisfaction n'est avancé sur
+        cette page.</p>
+    </div>
+  </section>
+
+  <!-- =========================================================== 10 · FAQ -->
+  <section class="deck__section faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap wrap--narrow">
+      <div class="section-head">
+        <p class="kicker reveal">08 — Objections</p>
+        <h2 class="h2 reveal" id="faq-title">Ce qui vous retient, en général.</h2>
+      </div>
+
+      <div class="faq__list">
+        <details class="faq__item reveal" name="faq" style="--i:0">
+          <summary><span>Je ne suis pas en condition physique. C'est éliminatoire ?</span></summary>
+          <div class="faq__answer"><p>Non. La condition physique est une conséquence de la pratique, pas
+            une condition d'entrée. Les premières semaines travaillent la position, la distance et le
+            déplacement — de la coordination avant du cardio. Tu règles ton intensité, personne ne la
+            règle pour toi.</p></div>
+        </details>
+
+        <details class="faq__item reveal" name="faq" style="--i:1">
+          <summary><span>J'ai passé quarante ans. C'est trop tard ?</span></summary>
+          <div class="faq__answer"><p>Non. Le JKD n'exige ni souplesse extrême ni coups de pied hauts :
+            ces éléments sont des options, pas le cœur de la méthode. L'économie de mouvement et la lecture
+            de la distance, qui sont l'essentiel, progressent très bien après quarante ans. On adapte le
+            volume, pas le contenu.</p></div>
+        </details>
+
+        <details class="faq__item reveal" name="faq" style="--i:2">
+          <summary><span>Je ne veux pas apprendre à me battre pour me battre.</span></summary>
+          <div class="faq__answer"><p>Tant mieux. L'objectif est la capacité, pas l'envie d'en découdre.
+            Le JKD enseigne d'abord à voir venir, à gérer une distance et à sortir d'une situation — la
+            frappe est le dernier outil de la liste. Les cours sont encadrés, l'intensité est dosée, et
+            frapper un partenaire plus faible que soi n'y a aucune valeur.</p></div>
+        </details>
+
+        <details class="faq__item reveal" name="faq" style="--i:3">
+          <summary><span>Combien de séances par semaine pour progresser vraiment ?</span></summary>
+          <div class="faq__answer"><p>Une séance hebdomadaire entretient et fait découvrir. Deux à trois
+            séances construisent des réflexes qui tiennent quand la pression monte : c'est le seuil qu'on
+            recommande, et c'est pourquoi la formule <em>Pratiquant</em> est celle qu'on met en avant.
+            Au-delà, le gain vient surtout du sparring encadré.</p></div>
+        </details>
+
+        <details class="faq__item reveal" name="faq" style="--i:4">
+          <summary><span>Qu'est-ce que je dois acheter pour commencer ?</span></summary>
+          <div class="faq__answer"><p>Pour le cours d'essai : une tenue de sport et une bouteille d'eau.
+            C'est tout, le matériel du cours est prêté. Si tu continues, tu prendras des gants et un
+            protège-dents — on te dira quoi prendre au moment où ça devient utile, pas avant.
+            <span class="placeholder-inline">Liste de matériel détaillée à compléter.</span></p></div>
+        </details>
+
+        <details class="faq__item reveal" name="faq" style="--i:5">
+          <summary><span>Quelle différence avec le MMA ?</span></summary>
+          <div class="faq__answer"><p>Le MMA est un sport de compétition, avec un règlement, des catégories
+            de poids et un arbitre — tout l'entraînement est construit autour de ce cadre. Le JKD est une
+            méthode de développement personnel du combat, sans règlement de compétition : il inclut des
+            portées que le MMA travaille aussi (frappe, corps à corps) mais garde comme boussole
+            l'efficacité hors cadre sportif, et la liberté de retirer ce qui ne te sert pas.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== 11 · CTA FINAL -->
+  <section class="deck__section essai" id="essai" aria-labelledby="essai-title">
+    <div class="wrap essai__grid">
+      <div class="essai__pitch">
+        <p class="kicker reveal">09 — Passer à l'acte</p>
+        <h2 class="h2 reveal" id="essai-title">Le premier cours ne coûte rien. Ton avis se fera seul.</h2>
+        <p class="lede reveal">Tu viens, tu essaies, tu repars. Aucun engagement, aucune inscription
+          à signer sur place. La seule chose qu'on te demande, c'est de venir en tenue de sport.</p>
+        <ul class="essai__points" role="list">
+          <li class="reveal" style="--i:0">Cours d'essai offert, sans engagement</li>
+          <li class="reveal" style="--i:1">Groupes de niveaux mélangés — les débutants sont encadrés à part sur les premières séances</li>
+          <li class="reveal" style="--i:2">Réponse sous 48&nbsp;h ouvrées <span class="placeholder-inline">(délai à confirmer)</span></li>
+        </ul>
+      </div>
+
+      <div class="essai__formwrap reveal">
+        <form class="form" id="trial-form" novalidate>
+          <h3 class="form__title">Réserver un cours d'essai</h3>
+
+          <div class="form__row">
+            <label class="form__label" for="f-prenom">Prénom</label>
+            <input class="form__input" type="text" id="f-prenom" name="prenom" autocomplete="given-name"
+                   required placeholder="Camille">
+          </div>
+
+          <div class="form__row">
+            <label class="form__label" for="f-email">Adresse e-mail</label>
+            <input class="form__input" type="email" id="f-email" name="email" autocomplete="email"
+                   required placeholder="camille@exemple.fr">
+          </div>
+
+          <div class="form__row">
+            <label class="form__label" for="f-creneau">Créneau souhaité</label>
+            <select class="form__input form__select" id="f-creneau" name="creneau" required>
+              <option value="" selected disabled>Choisir un créneau</option>
+              <option value="lundi-soir">Lundi soir — horaire à définir</option>
+              <option value="mercredi-soir">Mercredi soir — horaire à définir</option>
+              <option value="samedi-matin">Samedi matin — horaire à définir</option>
+              <option value="indifferent">Peu importe, proposez-moi</option>
+            </select>
+            <p class="form__hint" id="f-creneau-hint">Les horaires exacts sont des emplacements à compléter
+              sur cette page de démonstration.</p>
+          </div>
+
+          <button class="btn btn--primary form__submit" type="submit">Envoyer ma demande</button>
+
+          <p class="form__legal">Démonstration : ce formulaire n'est relié à aucun serveur. Rien n'est
+            envoyé, rien n'est enregistré.</p>
+
+          <p class="form__status" id="form-status" role="status" hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+  <!-- ======================================================== 12 · FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div class="site-footer__brand">
+        <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".55"/>
+          <path d="M20 6a7 7 0 0 0 0 14 7 7 0 0 1 0 14" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M31 11.5 36 16l-6.4 1.6" fill="none" stroke="var(--ember)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <p class="site-footer__word">JKD</p>
+          <p class="site-footer__name">Académie Jeet Kune Do</p>
+        </div>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Pied de page">
+        <ul>
+          <li><a href="#methode">La méthode</a></li>
+          <li><a href="#portees">Les portées</a></li>
+          <li><a href="#progression">Progression</a></li>
+          <li><a href="#programmes">Programmes</a></li>
+          <li><a href="#faq">Questions</a></li>
+          <li><a href="#essai">Cours d'essai</a></li>
+        </ul>
+      </nav>
+
+      <p class="site-footer__legal">
+        Page de démonstration — contenus, tarifs, horaires et adresse à personnaliser.
+        Aucune affiliation avec une organisation ou une fédération existante.
+        Les citations de Bruce Lee sont reproduites à titre documentaire.
+      </p>
+    </div>
+  </footer>
+
+<!-- Barre CTA collante -->
+<div class="sticky-cta" id="sticky-cta" hidden>
+  <p class="sticky-cta__text"><strong>Premier cours offert.</strong> <span>Sans engagement.</span></p>
+  <a class="btn btn--primary sticky-cta__btn" href="#essai">Réserver un essai</a>
+</div>
+
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>
