@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ONZE — Superviser, entraîner et recruter pour les clubs professionnels</title>
+<meta name="description" content="ONZE réunit la supervision de l'effectif, la construction des séances d'entraînement et le scouting des jeunes talents par poste dans une seule plateforme pour les clubs de football professionnels.">
+<meta name="theme-color" content="#0d0d0d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ONZE — Le poste de pilotage de votre club professionnel">
+<meta property="og:description" content="Supervision de l'effectif, séances d'entraînement et détection de jeunes talents par poste, dans une seule plateforme.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2311281c'/%3E%3Cpath d='M16 4v24M4 16h24' stroke='rgba(255,255,255,.25)' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%233987e5' stroke-width='2.5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/styles.css">
+<noscript><style>.js-only{display:none !important}.no-js-note{display:block !important}.table-view{display:block !important}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu principal</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#" aria-label="ONZE — accueil">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="7" fill="var(--pitch)"></rect>
+        <path d="M16 3v26M3 16h26" stroke="var(--pitch-line)" stroke-width="1.5"></path>
+        <circle cx="16" cy="16" r="5" fill="none" stroke="var(--accent)" stroke-width="2.5"></circle>
+      </svg>
+      <span class="brand__text">ONZE</span>
+    </a>
+
+    <nav class="site-nav" id="nav-principal" aria-label="Navigation principale">
+      <a href="#supervision">Supervision</a>
+      <a href="#seances">Séances</a>
+      <a href="#recrutement">Recrutement</a>
+      <a href="#resultats">Résultats</a>
+      <a href="#tarifs">Tarifs</a>
+      <a class="site-nav__cta" href="#demo">Demander une démo</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Basculer le thème clair ou sombre" aria-pressed="false">
+        <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+        <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      </button>
+      <a class="btn btn--primary btn--sm" href="#demo">Demander une démo</a>
+      <button class="icon-btn burger js-only" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-principal">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 7h17M3.5 12h17M3.5 17h17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Plateforme pour clubs professionnels</p>
+        <h1>Le poste de pilotage<br>de votre club.</h1>
+        <p class="lead">
+          ONZE réunit la <strong>supervision de l'effectif</strong>, la <strong>construction des séances</strong>
+          et la <strong>détection des jeunes talents par poste</strong> dans un seul outil — conçu avec les staffs,
+          utilisable depuis le bord du terrain.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#demo">Demander une démo</a>
+          <a class="btn btn--ghost" href="#recrutement">Essayer le scouting par poste</a>
+        </div>
+        <ul class="hero__trust">
+          <li>Déploiement en 3 semaines</li>
+          <li>Données hébergées en France</li>
+          <li>Conforme RGPD</li>
+        </ul>
+      </div>
+
+      <!-- Aperçu produit : graphique de charge hebdomadaire -->
+      <div class="hero__preview">
+        <div class="preview-chrome" aria-hidden="true">
+          <span class="preview-chrome__dot"></span><span class="preview-chrome__dot"></span><span class="preview-chrome__dot"></span>
+          <span class="preview-chrome__path">onze.app / supervision / semaine 12</span>
+        </div>
+
+        <figure class="chart" id="chart-charge">
+          <figcaption class="chart__head">
+            <h2 class="chart__title">Charge d'entraînement — semaine 12</h2>
+            <p class="chart__sub">Unités arbitraires (RPE × durée), moyenne de l'effectif professionnel</p>
+          </figcaption>
+
+          <div class="legend" role="list">
+            <span class="legend__item" role="listitem"><span class="legend__swatch legend__swatch--s1"></span>Entraînement</span>
+            <span class="legend__item" role="listitem"><span class="legend__swatch legend__swatch--s2"></span>Match</span>
+          </div>
+
+          <div class="plot">
+            <div class="plot__yaxis" aria-hidden="true">
+              <span>800</span><span>600</span><span>400</span><span>200</span><span>0</span>
+            </div>
+            <div class="plot__area">
+              <div class="plot__grid" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="plot__bars" id="charge-bars">
+                <button class="barslot" type="button" style="--h:26.25%" data-jour="Lundi" data-valeur="210" data-type="Entraînement — récupération"><span class="bar bar--s1"></span></button>
+                <button class="barslot" type="button" style="--h:67.5%"  data-jour="Mardi" data-valeur="540" data-type="Entraînement — technique"><span class="bar bar--s1"></span></button>
+                <button class="barslot" type="button" style="--h:77.5%"  data-jour="Mercredi" data-valeur="620" data-type="Entraînement — intensité"><span class="bar bar--s1"></span></button>
+                <button class="barslot" type="button" style="--h:60%"    data-jour="Jeudi" data-valeur="480" data-type="Entraînement — tactique"><span class="bar bar--s1"></span></button>
+                <button class="barslot" type="button" style="--h:37.5%"  data-jour="Vendredi" data-valeur="300" data-type="Entraînement — activation"><span class="bar bar--s1"></span></button>
+                <button class="barslot" type="button" style="--h:97.5%"  data-jour="Samedi" data-valeur="780" data-type="Match"><span class="bar bar--s2"></span><span class="bar__label">780</span></button>
+                <button class="barslot" type="button" style="--h:18.75%" data-jour="Dimanche" data-valeur="150" data-type="Entraînement — récupération"><span class="bar bar--s1"></span></button>
+              </div>
+              <div class="tooltip" id="charge-tip" aria-hidden="true" hidden></div>
+            </div>
+          </div>
+
+          <div class="plot__xaxis" aria-hidden="true">
+            <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+          </div>
+
+          <button class="table-toggle js-only" type="button" data-table="table-charge" aria-expanded="false" aria-controls="table-charge">Afficher le tableau</button>
+          <div class="table-view" id="table-charge" tabindex="0" role="region" aria-label="Tableau de la charge d'entraînement de la semaine 12">
+            <table>
+              <caption>Charge d'entraînement par jour, semaine 12 (u.a.)</caption>
+              <thead><tr><th scope="col">Jour</th><th scope="col">Type de séance</th><th scope="col" class="num">Charge (u.a.)</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Lundi</th><td>Entraînement — récupération</td><td class="num">210</td></tr>
+                <tr><th scope="row">Mardi</th><td>Entraînement — technique</td><td class="num">540</td></tr>
+                <tr><th scope="row">Mercredi</th><td>Entraînement — intensité</td><td class="num">620</td></tr>
+                <tr><th scope="row">Jeudi</th><td>Entraînement — tactique</td><td class="num">480</td></tr>
+                <tr><th scope="row">Vendredi</th><td>Entraînement — activation</td><td class="num">300</td></tr>
+                <tr><th scope="row">Samedi</th><td>Match</td><td class="num">780</td></tr>
+                <tr><th scope="row">Dimanche</th><td>Entraînement — récupération</td><td class="num">150</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= BANDEAU CONFIANCE ======================= -->
+  <section class="strip" aria-label="Clubs utilisateurs">
+    <div class="wrap strip__inner">
+      <p class="strip__label">Pensé avec les staffs de</p>
+      <ul class="strip__logos">
+        <li>FC Estuaire</li>
+        <li>Olympique Ravel</li>
+        <li>AS Montclair</li>
+        <li>Racing Belleroche</li>
+        <li>US Vallonne</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========================= TROIS PILIERS ========================= -->
+  <section class="section" aria-labelledby="piliers-titre">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow">Une plateforme, trois métiers</p>
+        <h2 id="piliers-titre">Du bilan du matin à la signature du prochain talent</h2>
+        <p class="section__intro">
+          Préparateurs physiques, entraîneurs et cellule de recrutement travaillent sur les mêmes données,
+          sans ressaisie et sans tableur qui circule par mail.
+        </p>
+      </header>
+
+      <div class="cards cards--3">
+        <article class="card reveal">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 17.5 8 11l4 3.5L21 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15.5 5H21v5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <h3>Superviser</h3>
+          <p>Charge, fraîcheur, disponibilité : l'état réel de votre effectif, chaque matin à 8 h.</p>
+          <ul class="ticks">
+            <li>Agrégation GPS, cardio et RPE</li>
+            <li>Ratio de charge aiguë/chronique</li>
+            <li>Suivi médical et retour au jeu</li>
+            <li>Alertes de surcharge individuelles</li>
+          </ul>
+          <a class="link-arrow" href="#supervision">Voir la supervision<span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M3.5 9.5h17M8.5 3v3M15.5 3v3M7.5 13h4M7.5 16.5h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          </span>
+          <h3>Organiser</h3>
+          <p>Des séances construites en quelques minutes, partagées à tout le staff et à la tablette du terrain.</p>
+          <ul class="ticks">
+            <li>Bibliothèque de 400+ exercices</li>
+            <li>Périodisation autour du match</li>
+            <li>Objectifs et volumes par bloc</li>
+            <li>Export vestiaire et PDF</li>
+          </ul>
+          <a class="link-arrow" href="#seances">Voir les séances<span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M15.8 15.8 21 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M11 7.8v6.4M7.8 11h6.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          </span>
+          <h3>Recruter</h3>
+          <p>Un scouting structuré par poste, adossé à vos critères de jeu plutôt qu'à l'intuition d'un observateur.</p>
+          <ul class="ticks">
+            <li>Profils de poste paramétrables</li>
+            <li>Base de joueurs U15 à U21</li>
+            <li>Notation multi-observateurs</li>
+            <li>Shortlists partagées et historisées</li>
+          </ul>
+          <a class="link-arrow" href="#recrutement">Voir le recrutement<span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== SUPERVISION ========================== -->
+  <section class="section section--alt" id="supervision" aria-labelledby="supervision-titre">
+    <div class="wrap split">
+      <div class="split__copy">
+        <p class="eyebrow">01 — Supervision de l'effectif</p>
+        <h2 id="supervision-titre">Savoir qui est prêt, avant d'écrire la séance</h2>
+        <p>
+          ONZE consolide chaque nuit les données GPS, les questionnaires de fraîcheur et les retours du staff médical.
+          Le matin, le préparateur physique ouvre une seule page : la charge des sept derniers jours, le ratio
+          aigu/chronique et la disponibilité réelle de chaque joueur.
+        </p>
+        <dl class="deflist">
+          <div>
+            <dt>Une source unique</dt>
+            <dd>Connecteurs Catapult, STATSports, Polar et import CSV pour le reste.</dd>
+          </div>
+          <div>
+            <dt>Des seuils qui vous appartiennent</dt>
+            <dd>Vous définissez les bornes de charge par poste et par tranche d'âge ; les alertes suivent.</dd>
+          </div>
+          <div>
+            <dt>Traçable</dt>
+            <dd>Chaque décision de reprise est horodatée et signée — utile en cas de litige assurance.</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="split__visual">
+        <div class="panel">
+          <div class="panel__head">
+            <h3 class="panel__title">Disponibilité de l'effectif</h3>
+            <p class="panel__sub">Lundi 14 septembre, 8 h 05 — 5 joueurs sur 27 affichés</p>
+          </div>
+          <table class="data-table">
+            <caption class="sr-only">Disponibilité et charge sur 7 jours des joueurs de l'effectif professionnel</caption>
+            <thead>
+              <tr>
+                <th scope="col">Joueur</th>
+                <th scope="col">Poste</th>
+                <th scope="col" class="num">Charge 7 j</th>
+                <th scope="col">Disponibilité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">A. Mbala</th><td>Déf. central</td><td class="num">2 140</td>
+                <td><span class="status status--good"><svg class="status__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Apte</span></td>
+              </tr>
+              <tr>
+                <th scope="row">L. Ferrand</th><td>Milieu relayeur</td><td class="num">2 480</td>
+                <td><span class="status status--good"><svg class="status__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Apte</span></td>
+              </tr>
+              <tr>
+                <th scope="row">T. Okonkwo</th><td>Ailier droit</td><td class="num">2 960</td>
+                <td><span class="status status--warning"><svg class="status__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M8 6.5v3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><circle cx="8" cy="11.7" r="0.9" fill="currentColor"></circle></svg>Charge élevée</span></td>
+              </tr>
+              <tr>
+                <th scope="row">S. Belkacem</th><td>Attaquant</td><td class="num">640</td>
+                <td><span class="status status--serious"><svg class="status__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M8 8V4.6M8 8l3 2.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Reprise progressive</span></td>
+              </tr>
+              <tr>
+                <th scope="row">J. Pereira</th><td>Gardien</td><td class="num">0</td>
+                <td><span class="status status--critical"><svg class="status__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M5.6 5.6l4.8 4.8M10.4 5.6l-4.8 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Indisponible</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="panel__foot">Chaque statut est posé par le staff médical, jamais calculé automatiquement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SÉANCES =========================== -->
+  <section class="section" id="seances" aria-labelledby="seances-titre">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow">02 — Séances d'entraînement</p>
+        <h2 id="seances-titre">La semaine se construit autour du match, pas l'inverse</h2>
+        <p class="section__intro">
+          Choisissez la date du match : ONZE propose une périodisation type (J-4 intensité, J-3 volume, J-2 vitesse,
+          J-1 activation) que vous ajustez bloc par bloc. Le staff voit la même semaine, en temps réel.
+        </p>
+      </header>
+
+      <div class="planner-layout">
+        <div class="panel panel--planner">
+          <div class="panel__head">
+            <h3 class="panel__title">Semaine 12 — Équipe professionnelle</h3>
+            <p class="panel__sub">Glissez un bloc pour le déplacer ; les charges se recalculent.</p>
+          </div>
+          <div class="planner" role="list">
+            <div class="planner__day" role="listitem">
+              <p class="planner__dayname">Lun <span>08/09</span></p>
+              <span class="chip chip--reco">Récupération · 45′</span>
+              <span class="chip chip--soin">Soins · 30′</span>
+            </div>
+            <div class="planner__day" role="listitem">
+              <p class="planner__dayname">Mar <span>09/09</span></p>
+              <span class="chip chip--tech">Technique · 75′</span>
+              <span class="chip chip--muscu">Renforcement · 40′</span>
+            </div>
+            <div class="planner__day planner__day--focus" role="listitem">
+              <p class="planner__dayname">Mer <span>10/09</span></p>
+              <span class="chip chip--inten">Intensité · 90′</span>
+              <span class="chip chip--video">Vidéo · 25′</span>
+            </div>
+            <div class="planner__day" role="listitem">
+              <p class="planner__dayname">Jeu <span>11/09</span></p>
+              <span class="chip chip--tact">Tactique · 80′</span>
+            </div>
+            <div class="planner__day" role="listitem">
+              <p class="planner__dayname">Ven <span>12/09</span></p>
+              <span class="chip chip--acti">Activation · 55′</span>
+              <span class="chip chip--video">Vidéo adversaire · 30′</span>
+            </div>
+            <div class="planner__day planner__day--match" role="listitem">
+              <p class="planner__dayname">Sam <span>13/09</span></p>
+              <span class="chip chip--match">Match · J12</span>
+            </div>
+            <div class="planner__day" role="listitem">
+              <p class="planner__dayname">Dim <span>14/09</span></p>
+              <span class="chip chip--reco">Récupération · 40′</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel panel--session" aria-labelledby="session-titre">
+          <p class="panel__kicker">Mercredi 10/09 · 10 h 00 · Terrain 2</p>
+          <h3 class="panel__title" id="session-titre">Intensité — conservation en supériorité</h3>
+
+          <div class="meter">
+            <div class="meter__head">
+              <span class="meter__label">Intensité prévue</span>
+              <span class="meter__value">68<span class="meter__unit"> / 100</span></span>
+            </div>
+            <div class="meter__track"><div class="meter__fill" style="--v:68%"></div></div>
+            <p class="meter__note">Cible de la semaine : 60 à 75. Au-delà, ONZE alerte le préparateur physique.</p>
+          </div>
+
+          <ol class="blocks">
+            <li><span class="blocks__time">15′</span><span class="blocks__name">Échauffement avec ballon</span></li>
+            <li><span class="blocks__time">20′</span><span class="blocks__name">Rondo 6 v 2, deux touches maximum</span></li>
+            <li><span class="blocks__time">25′</span><span class="blocks__name">Jeu 8 v 6 sur demi-terrain</span></li>
+            <li><span class="blocks__time">20′</span><span class="blocks__name">Transitions et finition</span></li>
+            <li><span class="blocks__time">10′</span><span class="blocks__name">Retour au calme et étirements</span></li>
+          </ol>
+
+          <p class="panel__foot">Séance partagée avec 9 membres du staff · dernière modification il y a 12 min</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= RECRUTEMENT ========================= -->
+  <section class="section section--alt" id="recrutement" aria-labelledby="recrutement-titre">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow">03 — Détection de jeunes talents</p>
+        <h2 id="recrutement-titre">Choisissez un poste sur le terrain, ONZE remonte les profils</h2>
+        <p class="section__intro">
+          Chaque poste porte ses propres critères d'évaluation. Cliquez sur une position du 4-3-3 ci-dessous
+          pour voir les critères associés et les joueurs de la base qui s'en approchent le plus.
+        </p>
+      </header>
+
+      <p class="no-js-note" hidden>
+        Le sélecteur de poste nécessite JavaScript. Les profils et les joueurs sont décrits dans les sections précédentes.
+      </p>
+
+      <div class="scout js-only">
+        <!-- Sélecteur : le terrain -->
+        <div class="scout__pitch">
+          <h3 class="scout__subtitle" id="pitch-titre">Sélecteur de poste — dispositif 4-3-3</h3>
+          <div class="pitch" role="group" aria-labelledby="pitch-titre">
+            <svg class="pitch__svg" viewBox="0 0 100 150" aria-hidden="true" focusable="false">
+              <rect x="0" y="0" width="100" height="150" rx="4" fill="var(--pitch)"></rect>
+              <g fill="none" stroke="var(--pitch-line)" stroke-width="0.8">
+                <rect x="4" y="4" width="92" height="142"></rect>
+                <line x1="4" y1="75" x2="96" y2="75"></line>
+                <circle cx="50" cy="75" r="13"></circle>
+                <rect x="22" y="113" width="56" height="33"></rect>
+                <rect x="38" y="133" width="24" height="13"></rect>
+                <rect x="22" y="4" width="56" height="33"></rect>
+                <rect x="38" y="4" width="24" height="13"></rect>
+                <path d="M4 10a6 6 0 0 0 6-6"></path>
+                <path d="M96 10a6 6 0 0 1-6-6"></path>
+                <path d="M4 140a6 6 0 0 1 6 6"></path>
+                <path d="M96 140a6 6 0 0 0-6 6"></path>
+              </g>
+              <g fill="var(--pitch-line)">
+                <circle cx="50" cy="75" r="1"></circle>
+                <circle cx="50" cy="124" r="1"></circle>
+                <circle cx="50" cy="26" r="1"></circle>
+              </g>
+            </svg>
+            <div class="pitch__spots" id="pitch-spots"><!-- boutons injectés par app.js --></div>
+          </div>
+          <p class="pitch__hint">11 positions · 7 profils de poste · flèches du clavier pour naviguer</p>
+        </div>
+
+        <!-- Résultats -->
+        <div class="scout__results">
+          <div class="scout__profile">
+            <p class="eyebrow eyebrow--tight" id="role-kicker">Profil de poste</p>
+            <h3 class="scout__rolename" id="role-name">—</h3>
+            <p class="scout__brief" id="role-brief"></p>
+            <ul class="criteria" id="role-criteria"></ul>
+          </div>
+
+          <!-- Une seule rangée de filtres, au-dessus de tout ce qu'elle cadre -->
+          <div class="filters" role="group" aria-label="Filtrer les joueurs">
+            <label class="field">
+              <span class="field__label">Catégorie d'âge</span>
+              <select id="filter-age">
+                <option value="99">Toutes</option>
+                <option value="21">21 ans ou moins</option>
+                <option value="19">19 ans ou moins</option>
+                <option value="17">17 ans ou moins</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Pied fort</span>
+              <select id="filter-foot">
+                <option value="">Tous</option>
+                <option value="Droit">Droit</option>
+                <option value="Gauche">Gauche</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__label">Indice de potentiel</span>
+              <select id="filter-index">
+                <option value="0">Tous</option>
+                <option value="75">75 et plus</option>
+                <option value="82">82 et plus</option>
+                <option value="88">88 et plus</option>
+              </select>
+            </label>
+            <button class="btn btn--ghost btn--sm filters__reset" type="button" id="filter-reset">Réinitialiser</button>
+          </div>
+
+          <p class="scout__count" id="scout-count" role="status" aria-live="polite"></p>
+
+          <div class="talents" id="talents-grid"></div>
+
+          <button class="table-toggle" type="button" data-table="table-talents" aria-expanded="false" aria-controls="table-talents">Afficher le tableau des notes</button>
+          <div class="table-view" id="table-talents" tabindex="0" role="region" aria-label="Tableau des notes des joueurs affichés"><!-- injecté par app.js --></div>
+
+          <p class="scout__disclaimer">
+            Joueurs, clubs et notes de cette page sont fictifs et servent uniquement la démonstration.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== RÉSULTATS =========================== -->
+  <section class="section" id="resultats" aria-labelledby="resultats-titre">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow">Ce que les clubs constatent</p>
+        <h2 id="resultats-titre">Une saison pilotée, ça se mesure</h2>
+      </header>
+
+      <div class="kpis" id="kpis">
+        <article class="tile">
+          <p class="tile__label">Séances planifiées sur la saison</p>
+          <p class="tile__value" data-count-to="1284" data-format="fr">1 284</p>
+          <p class="tile__delta tile__delta--good">
+            <svg class="tile__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10V2.8M6 2.8 2.6 6.2M6 2.8 9.4 6.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            +18 % vs saison N-1
+          </p>
+          <svg class="spark" viewBox="0 0 120 32" width="120" height="32" aria-hidden="true" focusable="false" data-spark="34,38,36,44,42,50,54,52,60,66,70,78"></svg>
+        </article>
+
+        <article class="tile">
+          <p class="tile__label">Blessures musculaires</p>
+          <p class="tile__value" data-count-to="-31" data-suffix=" %">−31 %</p>
+          <p class="tile__delta tile__delta--good">
+            <svg class="tile__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2v7.2M6 9.2 2.6 5.8M6 9.2 9.4 5.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            vs saison N-1
+          </p>
+          <svg class="spark" viewBox="0 0 120 32" width="120" height="32" aria-hidden="true" focusable="false" data-spark="76,74,70,72,64,60,58,52,48,44,40,38"></svg>
+        </article>
+
+        <article class="tile">
+          <p class="tile__label">Jeunes joueurs suivis</p>
+          <p class="tile__value" data-count-to="2640" data-format="fr">2 640</p>
+          <p class="tile__delta tile__delta--good">
+            <svg class="tile__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10V2.8M6 2.8 2.6 6.2M6 2.8 9.4 6.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            +540 ce trimestre
+          </p>
+          <svg class="spark" viewBox="0 0 120 32" width="120" height="32" aria-hidden="true" focusable="false" data-spark="28,30,34,33,40,46,44,52,58,62,68,74"></svg>
+        </article>
+
+        <article class="tile">
+          <p class="tile__label">Temps de préparation du staff</p>
+          <p class="tile__value" data-count-to="-42" data-suffix=" %">−42 %</p>
+          <p class="tile__delta tile__delta--good">
+            <svg class="tile__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2v7.2M6 9.2 2.6 5.8M6 9.2 9.4 5.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            vs suivi sur tableur
+          </p>
+          <svg class="spark" viewBox="0 0 120 32" width="120" height="32" aria-hidden="true" focusable="false" data-spark="72,70,68,62,58,56,50,46,44,40,36,34"></svg>
+        </article>
+      </div>
+      <p class="footnote">Chiffres illustratifs pour cette page de démonstration.</p>
+
+      <div class="quotes">
+        <blockquote class="quote reveal">
+          <p>« On a arrêté de se disputer sur les chiffres. Tout le monde regarde la même charge le matin, et la discussion porte enfin sur la séance. »</p>
+          <footer><cite>Préparateur physique</cite> — FC Estuaire</footer>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>« Le scouting par poste a changé notre manière de travailler : on cherche un profil défini, pas un bon joueur en général. »</p>
+          <footer><cite>Responsable cellule de recrutement</cite> — Olympique Ravel</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TARIFS ============================ -->
+  <section class="section section--alt" id="tarifs" aria-labelledby="tarifs-titre">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow">Tarifs</p>
+        <h2 id="tarifs-titre">Un abonnement par structure, sans coût par utilisateur</h2>
+        <p class="section__intro">Tout le staff est inclus. Engagement sur une saison, facturation annuelle ou en deux fois.</p>
+      </header>
+
+      <div class="cards cards--3 plans">
+        <article class="card plan">
+          <h3 class="plan__name">Académie</h3>
+          <p class="plan__price"><span class="plan__amount">490 €</span><span class="plan__period">/ mois</span></p>
+          <p class="plan__for">Centres de formation et clubs semi-professionnels.</p>
+          <ul class="ticks">
+            <li>Jusqu'à 3 catégories d'âge</li>
+            <li>Planification des séances</li>
+            <li>Supervision de la charge (RPE)</li>
+            <li>Base de scouting en lecture</li>
+            <li>Support par e-mail</li>
+          </ul>
+          <a class="btn btn--ghost btn--full" href="#demo">Demander une démo</a>
+        </article>
+
+        <article class="card plan plan--featured">
+          <p class="plan__badge">Le plus choisi</p>
+          <h3 class="plan__name">Club Pro</h3>
+          <p class="plan__price"><span class="plan__amount">1 290 €</span><span class="plan__period">/ mois</span></p>
+          <p class="plan__for">Clubs professionnels avec un effectif et un centre de formation.</p>
+          <ul class="ticks">
+            <li>Catégories illimitées</li>
+            <li>Connecteurs GPS et cardio</li>
+            <li>Module médical et retour au jeu</li>
+            <li>Scouting complet par poste</li>
+            <li>Notation multi-observateurs</li>
+            <li>Accompagnement au démarrage</li>
+          </ul>
+          <a class="btn btn--primary btn--full" href="#demo">Demander une démo</a>
+        </article>
+
+        <article class="card plan">
+          <h3 class="plan__name">Groupe multi-clubs</h3>
+          <p class="plan__price"><span class="plan__amount">Sur devis</span></p>
+          <p class="plan__for">Groupes détenant plusieurs clubs et réseaux de partenaires.</p>
+          <ul class="ticks">
+            <li>Pilotage consolidé multi-entités</li>
+            <li>Référentiel de postes partagé</li>
+            <li>Authentification SSO</li>
+            <li>Hébergement dédié</li>
+            <li>Interlocuteur unique</li>
+          </ul>
+          <a class="btn btn--ghost btn--full" href="#demo">Nous contacter</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FAQ ============================= -->
+  <section class="section" aria-labelledby="faq-titre">
+    <div class="wrap wrap--narrow">
+      <header class="section__head">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 id="faq-titre">Ce que les clubs nous demandent avant de signer</h2>
+      </header>
+
+      <div class="faq">
+        <details>
+          <summary>Combien de temps pour être opérationnel ?</summary>
+          <p>Trois semaines en moyenne : une semaine d'import de l'effectif et du référentiel de postes, une semaine de paramétrage des seuils de charge avec le préparateur physique, une semaine en double avec votre suivi actuel.</p>
+        </details>
+        <details>
+          <summary>Nos données GPS sont chez un autre prestataire, est-ce bloquant ?</summary>
+          <p>Non. Les connecteurs Catapult, STATSports et Polar sont natifs. Pour tout autre système, l'import CSV programmé couvre le besoin, et une API d'écriture est disponible sur le plan Club Pro.</p>
+        </details>
+        <details>
+          <summary>Qui voit les informations médicales ?</summary>
+          <p>Seuls les profils habilités par le club. L'entraîneur voit une disponibilité (apte, reprise, indisponible) sans accéder au diagnostic. Chaque consultation est journalisée.</p>
+        </details>
+        <details>
+          <summary>Comment les jeunes joueurs entrent-ils dans la base ?</summary>
+          <p>Par vos observateurs, via l'application mobile depuis le bord du terrain, ou par import de vos fiches existantes. Pour les joueurs mineurs, la fiche n'est créée qu'après recueil du consentement du représentant légal, conservé dans le dossier.</p>
+        </details>
+        <details>
+          <summary>Que devient notre historique si nous arrêtons ?</summary>
+          <p>Export complet au format CSV et PDF à tout moment, y compris après résiliation. Aucune donnée n'est retenue comme moyen de pression : c'est écrit au contrat.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= DÉMO ============================= -->
+  <section class="cta" id="demo" aria-labelledby="demo-titre">
+    <div class="wrap cta__grid">
+      <div class="cta__copy">
+        <h2 id="demo-titre">Voyons votre semaine type ensemble</h2>
+        <p>
+          45 minutes, en visio, avec votre calendrier de match réel. On construit une semaine devant vous
+          et on regarde deux ou trois postes que vous cherchez à renforcer.
+        </p>
+        <ul class="ticks ticks--lg">
+          <li>Aucune installation nécessaire</li>
+          <li>Environnement d'essai avec vos propres postes</li>
+          <li>Réponse sous un jour ouvré</li>
+        </ul>
+      </div>
+
+      <form class="form" id="demo-form" novalidate>
+        <div class="form__row">
+          <label class="field">
+            <span class="field__label">Nom et prénom</span>
+            <input type="text" name="nom" id="f-nom" autocomplete="name" required>
+            <span class="field__error" data-error-for="f-nom"></span>
+          </label>
+          <label class="field">
+            <span class="field__label">Club ou structure</span>
+            <input type="text" name="club" id="f-club" autocomplete="organization" required>
+            <span class="field__error" data-error-for="f-club"></span>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">E-mail professionnel</span>
+          <input type="email" name="email" id="f-email" autocomplete="email" required>
+          <span class="field__error" data-error-for="f-email"></span>
+        </label>
+        <label class="field">
+          <span class="field__label">Votre rôle</span>
+          <select name="role" id="f-role">
+            <option>Entraîneur principal</option>
+            <option>Préparateur physique</option>
+            <option>Cellule de recrutement</option>
+            <option>Direction sportive</option>
+            <option>Staff médical</option>
+            <option>Autre</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field__label">Ce que vous cherchez à résoudre <span class="field__opt">(optionnel)</span></span>
+          <textarea name="message" id="f-message" rows="3"></textarea>
+        </label>
+        <button class="btn btn--primary btn--full" type="submit">Envoyer la demande</button>
+        <p class="form__legal">Page de démonstration : le formulaire n'envoie rien et aucune donnée n'est enregistrée.</p>
+        <p class="form__ok" id="form-ok" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <a class="brand" href="#" aria-label="ONZE — accueil">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect width="32" height="32" rx="7" fill="var(--pitch)"></rect>
+          <path d="M16 3v26M3 16h26" stroke="var(--pitch-line)" stroke-width="1.5"></path>
+          <circle cx="16" cy="16" r="5" fill="none" stroke="var(--accent)" stroke-width="2.5"></circle>
+        </svg>
+        <span class="brand__text">ONZE</span>
+      </a>
+      <p>Superviser l'effectif. Construire les séances. Détecter les talents.</p>
+    </div>
+    <nav class="site-footer__nav" aria-label="Pied de page">
+      <div>
+        <h2>Produit</h2>
+        <ul>
+          <li><a href="#supervision">Supervision</a></li>
+          <li><a href="#seances">Séances</a></li>
+          <li><a href="#recrutement">Recrutement</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Ressources</h2>
+        <ul>
+          <li><a href="#resultats">Résultats</a></li>
+          <li><a href="#faq-titre">Questions fréquentes</a></li>
+          <li><a href="#demo">Demander une démo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Légal</h2>
+        <ul>
+          <li><a href="#demo">Mentions légales</a></li>
+          <li><a href="#demo">Politique de confidentialité</a></li>
+          <li><a href="#demo">Accessibilité</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap site-footer__bottom">
+    <p>ONZE est un produit fictif. Cette page a été réalisée dans le cadre de la formation « IA : Développeur Augmenté ».</p>
+  </div>
+</footer>
+
+<script src="assets/app.js" defer></script>
+</body>
+</html>
