@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dés &amp; Merveilles — Boutique de jeux de société</title>
+  <meta name="description" content="Dés & Merveilles, la boutique de jeux de société : jeux d'ambiance, de stratégie, pour enfants, cartes à collectionner et accessoires. Livraison en 48h.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- SVG sprites -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-meeple" viewBox="0 0 64 64"><path d="M32 4c6.6 0 11 4.8 11 10.6 0 3.3-1.4 6-3.6 8 7.8 1.6 17.6 5.3 20.8 9.4 2.2 2.8.4 6.5-3.1 6.8-3.4.3-7.8-.2-11.1-.5 2.5 6.4 6.9 13.6 9.6 18.2 1.5 2.6-.3 5.5-3.3 5.5H40.7c-2 0-3.8-1.2-4.6-3L32 50l-4.1 9c-.8 1.8-2.6 3-4.6 3H11.7c-3 0-4.8-2.9-3.3-5.5 2.7-4.6 7.1-11.8 9.6-18.2-3.3.3-7.7.8-11.1.5-3.5-.3-5.3-4-3.1-6.8 3.2-4.1 13-7.8 20.8-9.4-2.2-2-3.6-4.7-3.6-8C21 8.8 25.4 4 32 4z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm5.3-2.2L21 21"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6.2M10 21h.01M17 21h.01"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path style="fill:var(--fill, none)" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20.5s-8-4.8-8-11A4.5 4.5 0 0 1 12 6.8a4.5 4.5 0 0 1 8 2.7c0 6.2-8 11-8 11z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm-8 9c.8-4 4-6 8-6s7.2 2 8 6"/></symbol>
+    <symbol id="i-players" viewBox="0 0 24 24"><path fill="currentColor" d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7.5-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3.6 3-6 7-6s7 2.4 7 6H2zm15.5 0c0-2.2-.8-4-2.2-5.3.6-.1 1-.2 1.2-.2 3 0 5.5 1.9 5.5 5.5h-4.5z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zm0-13v4.5l3 2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  </svg>
+
+  <!-- Bandeau d'annonces -->
+  <div class="topbar">
+    <div class="topbar__track">
+      <span>🚚 Livraison offerte dès 49 €</span>
+      <span>🏪 Retrait gratuit en boutique en 2h</span>
+      <span>🎲 Plus de 12 000 jeux en stock</span>
+      <span>💬 Des conseils de passionnés, 7j/7</span>
+      <span>🚚 Livraison offerte dès 49 €</span>
+      <span>🏪 Retrait gratuit en boutique en 2h</span>
+      <span>🎲 Plus de 12 000 jeux en stock</span>
+      <span>💬 Des conseils de passionnés, 7j/7</span>
+    </div>
+  </div>
+
+  <!-- En-tête -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+
+      <a href="#" class="logo" aria-label="Dés & Merveilles — accueil">
+        <span class="logo__icon"><svg><use href="#i-meeple"/></svg></span>
+        <span class="logo__text">Dés<em>&amp;</em>Merveilles</span>
+      </a>
+
+      <form class="search" role="search" onsubmit="return false">
+        <input type="search" placeholder="Je cherche un jeu, un éditeur, une ambiance…" aria-label="Rechercher">
+        <button type="submit" aria-label="Lancer la recherche"><svg><use href="#i-search"/></svg></button>
+      </form>
+
+      <nav class="header__actions" aria-label="Mon compte">
+        <a href="#" class="action"><svg><use href="#i-user"/></svg><span>Compte</span></a>
+        <a href="#" class="action"><svg><use href="#i-heart"/></svg><span>Envies</span><b class="bubble bubble--pink" id="wishCount">0</b></a>
+        <a href="#" class="action action--cart"><svg><use href="#i-cart"/></svg><span>Panier</span><b class="bubble" id="cartCount">0</b></a>
+      </nav>
+    </div>
+
+    <nav class="mainnav" id="mainnav" aria-label="Catégories">
+      <ul class="container mainnav__list">
+        <li><a href="#categories">Jeux de société</a></li>
+        <li><a href="#categories">Enfants</a></li>
+        <li><a href="#categories">Cartes &amp; JCC</a></li>
+        <li><a href="#categories">Jeux de rôle</a></li>
+        <li><a href="#categories">Figurines</a></li>
+        <li><a href="#categories">Puzzles &amp; classiques</a></li>
+        <li><a href="#categories">Accessoires</a></li>
+        <li><a href="#promo" class="mainnav__hot">🔥 Bonnes affaires</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__main">
+          <span class="pill pill--yellow">Rentrée ludique 2026</span>
+          <h1>Des jeux pour <span class="hl">toutes</span> les tablées&nbsp;!</h1>
+          <p>Soirées entre amis, dimanches en famille ou parties épiques à deux&nbsp;: trouvez le jeu qui fera briller les yeux de vos joueurs, choisi et conseillé par une équipe de passionnés.</p>
+          <div class="hero__cta">
+            <a href="#finder" class="btn btn--primary">Trouver mon jeu <svg><use href="#i-arrow"/></svg></a>
+            <a href="#products" class="btn btn--ghost">Voir les nouveautés</a>
+          </div>
+          <ul class="hero__stats">
+            <li><strong>12 000+</strong> jeux en stock</li>
+            <li><strong>4,9/5</strong> sur 8 400 avis</li>
+            <li><strong>48h</strong> livrés chez vous</li>
+          </ul>
+
+          <div class="float float--d1" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="float float--d2" aria-hidden="true"><i></i><i></i><i></i></div>
+          <svg class="float float--m1" aria-hidden="true"><use href="#i-meeple"/></svg>
+          <svg class="float float--m2" aria-hidden="true"><use href="#i-meeple"/></svg>
+        </div>
+
+        <aside class="hero__side">
+          <a href="#products" class="spot spot--violet">
+            <span class="pill pill--white">Jeu du mois</span>
+            <h2>Galaxie Gourmande</h2>
+            <p>Construisez le meilleur restaurant de l'espace. Stratégie accessible, 2-5 joueurs.</p>
+            <span class="spot__price">34,90 €</span>
+            <span class="spot__art" aria-hidden="true">🪐</span>
+          </a>
+          <a href="#products" class="spot spot--teal">
+            <span class="pill pill--white">Précommandes</span>
+            <h2>Les sorties de l'automne</h2>
+            <span class="spot__link">Réserver le mien <svg><use href="#i-arrow"/></svg></span>
+            <span class="spot__art" aria-hidden="true">🍂</span>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Réassurance -->
+    <section class="perks container" aria-label="Nos engagements">
+      <div class="perk"><span class="perk__ico perk__ico--orange">🚚</span><div><strong>Livraison en 48h</strong><small>Offerte dès 49 € d'achat</small></div></div>
+      <div class="perk"><span class="perk__ico perk__ico--teal">🏪</span><div><strong>Retrait en boutique</strong><small>Gratuit, prêt en 2h</small></div></div>
+      <div class="perk"><span class="perk__ico perk__ico--pink">🔒</span><div><strong>Paiement sécurisé</strong><small>CB, PayPal, 3x sans frais</small></div></div>
+      <div class="perk"><span class="perk__ico perk__ico--violet">🧙</span><div><strong>Conseils d'experts</strong><small>Par chat ou en boutique</small></div></div>
+    </section>
+
+    <!-- Catégories -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">Explorer</span>
+            <h2 class="section__title">Quel joueur êtes-vous&nbsp;?</h2>
+          </div>
+          <a href="#" class="link">Toutes les catégories <svg><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="cats">
+          <a href="#" class="cat cat--orange"><span class="cat__emoji">🎉</span><strong>Ambiance</strong><small>Rires garantis</small></a>
+          <a href="#" class="cat cat--violet"><span class="cat__emoji">🧠</span><strong>Stratégie</strong><small>Pour cogiter</small></a>
+          <a href="#" class="cat cat--teal"><span class="cat__emoji">👨‍👩‍👧</span><strong>Famille</strong><small>Dès 6 ans</small></a>
+          <a href="#" class="cat cat--pink"><span class="cat__emoji">🤝</span><strong>Coopératif</strong><small>Gagner ensemble</small></a>
+          <a href="#" class="cat cat--yellow"><span class="cat__emoji">🧸</span><strong>Enfants</strong><small>De 2 à 10 ans</small></a>
+          <a href="#" class="cat cat--blue"><span class="cat__emoji">💞</span><strong>À deux</strong><small>Duels & duos</small></a>
+          <a href="#" class="cat cat--green"><span class="cat__emoji">🗝️</span><strong>Escape game</strong><small>Énigmes & enquêtes</small></a>
+          <a href="#" class="cat cat--red"><span class="cat__emoji">🃏</span><strong>Cartes & JCC</strong><small>Boosters & decks</small></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produits -->
+    <section class="section section--tinted" id="products">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">La ludothèque</span>
+            <h2 class="section__title">Les jeux du moment</h2>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Sélections">
+            <button class="tab is-active" role="tab" aria-selected="true" data-tab="new">✨ Nouveautés</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="best">🏆 Meilleures ventes</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="pre">⏳ Précommandes</button>
+          </div>
+        </div>
+        <div class="carousel">
+          <button class="carousel__btn carousel__btn--prev" aria-label="Précédent"><svg><use href="#i-arrow"/></svg></button>
+          <div class="carousel__track" id="productTrack"></div>
+          <button class="carousel__btn carousel__btn--next" aria-label="Suivant"><svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conseiller de jeu -->
+    <section class="section" id="finder">
+      <div class="container">
+        <div class="finder">
+          <div class="finder__intro">
+            <span class="eyebrow eyebrow--light">Conseillez-moi un jeu</span>
+            <h2>Le bon jeu en 3 clics</h2>
+            <p>Dites-nous qui joue, et on s'occupe du reste.</p>
+            <svg class="finder__meeple" aria-hidden="true"><use href="#i-meeple"/></svg>
+          </div>
+          <div class="finder__form">
+            <fieldset>
+              <legend>Combien de joueurs&nbsp;?</legend>
+              <div class="chips" data-filter="players">
+                <button class="chip is-active" data-value="all">Peu importe</button>
+                <button class="chip" data-value="1">Solo</button>
+                <button class="chip" data-value="2">À deux</button>
+                <button class="chip" data-value="5">5 et +</button>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Quel âge a le plus jeune&nbsp;?</legend>
+              <div class="chips" data-filter="age">
+                <button class="chip is-active" data-value="all">Peu importe</button>
+                <button class="chip" data-value="6">6 ans</button>
+                <button class="chip" data-value="10">10 ans</button>
+                <button class="chip" data-value="14">Ado / adulte</button>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Combien de temps&nbsp;?</legend>
+              <div class="chips" data-filter="time">
+                <button class="chip is-active" data-value="all">Peu importe</button>
+                <button class="chip" data-value="20">Moins de 20 min</button>
+                <button class="chip" data-value="45">Moins de 45 min</button>
+                <button class="chip" data-value="999">Une soirée entière</button>
+              </div>
+            </fieldset>
+            <p class="finder__count" id="finderCount" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="grid" id="finderGrid"></div>
+      </div>
+    </section>
+
+    <!-- Promo avec compte à rebours -->
+    <section class="container" id="promo">
+      <div class="promo">
+        <div class="promo__text">
+          <span class="pill pill--white">Offre flash</span>
+          <h2>Week-end ludique&nbsp;: <span>-30&nbsp;%</span> sur une sélection de jeux experts</h2>
+          <p>Avec le code <code>MEEPLE30</code>, jusqu'à dimanche minuit.</p>
+        </div>
+        <div class="countdown" id="countdown" aria-label="Temps restant">
+          <div><b data-unit="d">00</b><small>jours</small></div>
+          <div><b data-unit="h">00</b><small>heures</small></div>
+          <div><b data-unit="m">00</b><small>min</small></div>
+          <div><b data-unit="s">00</b><small>sec</small></div>
+        </div>
+        <a href="#products" class="btn btn--dark">J'en profite <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </section>
+
+    <!-- Coups de cœur de l'équipe -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">Nos vendeurs ont joué pour vous</span>
+            <h2 class="section__title">Les coups de cœur de l'équipe</h2>
+          </div>
+        </div>
+        <div class="team">
+          <article class="staff">
+            <div class="staff__who"><span class="avatar avatar--orange">CL</span><div><strong>Clara</strong><small>Reine des jeux d'ambiance</small></div></div>
+            <h3>Mots Mêlés Party</h3>
+            <p>« Le jeu que je sors à chaque anniversaire. Trois minutes pour expliquer, deux heures de fous rires. »</p>
+            <span class="stars" aria-label="5 sur 5">★★★★★</span>
+          </article>
+          <article class="staff">
+            <div class="staff__who"><span class="avatar avatar--violet">TH</span><div><strong>Théo</strong><small>Stratège de l'extrême</small></div></div>
+            <h3>Empires d'Obsidienne</h3>
+            <p>« Un gros jeu de développement où chaque tour offre mille possibilités. Mon top 1 de l'année. »</p>
+            <span class="stars" aria-label="5 sur 5">★★★★★</span>
+          </article>
+          <article class="staff">
+            <div class="staff__who"><span class="avatar avatar--teal">IN</span><div><strong>Inès</strong><small>Spécialiste jeux enfants</small></div></div>
+            <h3>La Forêt des Lucioles</h3>
+            <p>« Coopératif, magnifique et malin&nbsp;: mes neveux de 5 ans le réclament à chaque visite. »</p>
+            <span class="stars" aria-label="4 sur 5">★★★★<span class="stars__off">★</span></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Événements + newsletter -->
+    <section class="section section--tinted">
+      <div class="container duo">
+        <div class="events">
+          <span class="eyebrow">En boutique</span>
+          <h2 class="section__title">Venez jouer avec nous</h2>
+          <ul class="events__list">
+            <li><span class="date date--pink"><b>19</b>sept.</span><div><strong>Soirée jeux d'ambiance</strong><small>Vendredi · 19h30 · Gratuit</small></div></li>
+            <li><span class="date date--teal"><b>21</b>sept.</span><div><strong>Initiation jeu de rôle</strong><small>Dimanche · 14h · Dès 12 ans</small></div></li>
+            <li><span class="date date--violet"><b>27</b>sept.</span><div><strong>Tournoi de cartes à collectionner</strong><small>Samedi · 10h · 5 € l'inscription</small></div></li>
+          </ul>
+        </div>
+        <div class="newsletter">
+          <span class="newsletter__gift" aria-hidden="true">🎁</span>
+          <h2>-10&nbsp;% sur votre première commande</h2>
+          <p>Inscrivez-vous à la gazette ludique&nbsp;: nouveautés, bons plans et sélections de l'équipe, une fois par semaine.</p>
+          <form class="newsletter__form" id="newsletterForm" novalidate>
+            <input type="email" placeholder="votre@email.fr" aria-label="Adresse e-mail" required>
+            <button class="btn btn--primary" type="submit">Je m'inscris</button>
+          </form>
+          <p class="newsletter__msg" id="newsletterMsg" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pied de page -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#" class="logo logo--light">
+          <span class="logo__icon"><svg><use href="#i-meeple"/></svg></span>
+          <span class="logo__text">Dés<em>&amp;</em>Merveilles</span>
+        </a>
+        <p>La boutique des joueurs curieux depuis 2012. Des milliers de jeux, et toujours quelqu'un pour vous conseiller.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="YouTube">YT</a><a href="#" aria-label="Discord">DC</a><a href="#" aria-label="TikTok">TT</a>
+        </div>
+      </div>
+      <div><h3>Boutique</h3><ul><li><a href="#">Nouveautés</a></li><li><a href="#">Précommandes</a></li><li><a href="#">Bonnes affaires</a></li><li><a href="#">Cartes cadeaux</a></li></ul></div>
+      <div><h3>Aide</h3><ul><li><a href="#">Suivre ma commande</a></li><li><a href="#">Livraison &amp; retours</a></li><li><a href="#">FAQ</a></li><li><a href="#">Nous contacter</a></li></ul></div>
+      <div><h3>Dés &amp; Merveilles</h3><ul><li><a href="#">Notre histoire</a></li><li><a href="#">Nos boutiques</a></li><li><a href="#">Offres CSE &amp; assos</a></li><li><a href="#">Recrutement</a></li></ul></div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© 2026 Dés &amp; Merveilles · <a href="#">Mentions légales</a> · <a href="#">CGV</a> · <a href="#">Confidentialité</a></p>
+      <div class="payments" aria-label="Moyens de paiement"><span>CB</span><span>Visa</span><span>Mastercard</span><span>PayPal</span><span>3x sans frais</span></div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
