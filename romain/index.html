@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nova Hangar — Vaisseaux Star Citizen</title>
+  <meta name="description" content="Nova Hangar : achetez vos vaisseaux Star Citizen prêts au vol. Chasseurs, cargos, explorateurs, prix en euros TVA incluse.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f2c3e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 30 16 16 30 2 16Z' fill='%2354adf7'/%3E%3C/svg%3E">
+
+  <!-- Polices : Saira (proche d'Univia Pro utilisée par RSI) et Electrolize (police historique du site RSI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Electrolize&amp;family=Saira:ital,wght@0,400;0,500;0,600;0,700;1,700&amp;display=swap">
+  <link rel="preconnect" href="https://media.robertsspaceindustries.com">
+
+  <!-- Signale au CSS que JavaScript est actif (évite un flash du menu mobile au chargement) -->
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+
+  <style>
+    /* ==========================================================================
+       1. Variables
+       Couleurs relevées sur robertsspaceindustries.com
+       ========================================================================== */
+    :root {
+      --color-bg: #001f33;
+      --color-bg-alt: #00182a;
+      --color-header: #0f2c3e;
+      --color-surface: #05273b;
+      --color-border: #194967;
+      --color-text: #add3eb;
+      --color-text-strong: #ffffff;
+      --color-text-muted: #7c9db2;
+      --color-accent: #54adf7;
+      --color-accent-hover: #80c3fa;
+      --color-on-accent: #00111c;
+
+      --font-ui: "Saira", "Segoe UI", system-ui, sans-serif;
+      --font-tech: "Electrolize", "Saira", system-ui, sans-serif;
+
+      --container: 80rem;
+      --gutter: clamp(1rem, 4vw, 3rem);
+      --topbar-h: 2.5rem;
+      --nav-h: 4rem;
+      --cut: 0.75rem;
+      --transition: 200ms ease;
+    }
+
+    /* ==========================================================================
+       2. Reset et styles de base
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    * {
+      margin: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    ul,
+    ol {
+      padding: 0;
+      list-style: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--color-text-strong);
+      font-weight: 700;
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+
+    p {
+      text-wrap: pretty;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+    }
+
+    section[id] {
+      scroll-margin-top: var(--nav-h);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
+    /* ==========================================================================
+       3. Utilitaires
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: calc(var(--container) + var(--gutter) * 2);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      background-color: var(--color-accent);
+      color: var(--color-on-accent);
+      font-weight: 600;
+      text-decoration: none;
+      transform: translateY(-200%);
+      transition: transform var(--transition);
+    }
+
+    .skip-link:focus {
+      transform: none;
+    }
+
+    .svg-sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .icon {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .text-accent {
+      color: var(--color-accent);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--color-accent);
+      font-family: var(--font-tech);
+      font-size: 0.8125rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 1.5rem;
+      height: 1px;
+      background-color: currentColor;
+    }
+
+    /* ==========================================================================
+       4. Boutons
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 3rem;
+      padding: 0.625rem 1.5rem;
+      border: 1px solid transparent;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    /* Coin inférieur gauche coupé, comme le bouton « Play now » du site officiel */
+    .btn--primary {
+      background-color: var(--color-accent);
+      color: var(--color-on-accent);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+    }
+
+    .btn--primary:hover {
+      background-color: var(--color-accent-hover);
+    }
+
+    /* Le clip-path masque l'outline : on dessine le focus à l'intérieur du bouton */
+    .btn--primary:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--color-on-accent), inset 0 0 0 4px var(--color-text-strong);
+    }
+
+    .btn--outline {
+      border-color: var(--color-accent);
+      background-color: transparent;
+      color: var(--color-accent);
+    }
+
+    .btn--outline:hover {
+      background-color: rgb(84 173 247 / 0.12);
+      color: var(--color-text-strong);
+    }
+
+    .btn--sm {
+      min-height: 2.75rem;
+      padding: 0.5rem 1.125rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    .btn--block {
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       5. Header (barre supérieure + navigation)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: calc(var(--topbar-h) * -1);
+      z-index: 100;
+    }
+
+    .topbar {
+      height: var(--topbar-h);
+      background-color: var(--color-header);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .topbar__inner {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .topbar__brand {
+      min-width: 0;
+      overflow: hidden;
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .navbar {
+      position: relative;
+      background-color: var(--color-header);
+      box-shadow: 0 1px 0 rgb(0 0 0 / 0.35);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-height: var(--nav-h);
+    }
+
+    .logo {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 0.625rem;
+      color: var(--color-text-strong);
+      font-size: 1.125rem;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .logo__mark {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: var(--color-accent);
+      stroke-width: 2;
+    }
+
+    .logo__accent {
+      color: var(--color-accent);
+    }
+
+    .main-nav {
+      margin-left: 1.5rem;
+    }
+
+    .main-nav__list {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .main-nav__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border: 0;
+      background: none;
+      color: var(--color-text);
+      font-size: 1rem;
+      white-space: nowrap;
+      font-weight: 500;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+
+    .main-nav__link:hover {
+      color: var(--color-text-strong);
+    }
+
+    .main-nav__caret {
+      flex-shrink: 0;
+      width: 0.625rem;
+      height: 0.375rem;
+    }
+
+    .navbar__tools {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 0.25rem;
+      margin-left: auto;
+    }
+
+    .navbar__play {
+      margin-right: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .tool {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.375rem;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      padding: 0.25rem 0.625rem;
+      border: 0;
+      background: none;
+      color: var(--color-text);
+      font-size: 0.875rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+
+    .tool:hover {
+      color: var(--color-text-strong);
+    }
+
+    .navbar__toggle {
+      display: none;
+    }
+
+    /* Écrans moyens : icônes seules pour la devise et la connexion */
+    @media (max-width: 89.99em) {
+      .tool__label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+    }
+
+    /* Tablette et mobile : menu repliable */
+    @media (max-width: 79.99em) {
+      .navbar__toggle {
+        display: inline-flex;
+      }
+
+      .main-nav__list {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.5rem var(--gutter) 1.25rem;
+        background-color: var(--color-header);
+        border-top: 1px solid var(--color-border);
+        box-shadow: 0 1rem 2rem rgb(0 0 0 / 0.4);
+      }
+
+      .js .main-nav__list:not(.is-open) {
+        display: none;
+      }
+
+      .main-nav__link {
+        justify-content: space-between;
+        width: 100%;
+        padding-inline: 0;
+        padding-block: 0.875rem;
+        border-bottom: 1px solid rgb(25 73 103 / 0.6);
+      }
+
+      /* Sans JavaScript, le menu reste affiché sous la barre */
+      .no-js .navbar__inner {
+        flex-wrap: wrap;
+      }
+
+      .no-js .main-nav {
+        order: 1;
+        flex-basis: 100%;
+        margin-left: 0;
+      }
+
+      .no-js .main-nav__list {
+        position: static;
+        box-shadow: none;
+      }
+
+      .no-js .navbar__toggle {
+        display: none;
+      }
+    }
+
+    @media (max-width: 39.99em) {
+      .navbar__play {
+        display: none;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .navbar__tools {
+        gap: 0;
+      }
+
+      .tool {
+        min-width: 2.5rem;
+        padding-inline: 0.5rem;
+      }
+    }
+
+    /* ==========================================================================
+       6. Hero
+       ========================================================================== */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      align-items: center;
+      min-height: clamp(34rem, 78vh, 46rem);
+      overflow: hidden;
+      background-color: var(--color-bg-alt);
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 70% center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(0deg, var(--color-bg) 0%, rgb(0 31 51 / 0) 35%),
+        linear-gradient(90deg, var(--color-bg) 0%, rgb(0 31 51 / 0.85) 35%, rgb(0 31 51 / 0.15) 70%, rgb(0 31 51 / 0) 100%);
+    }
+
+    .hero__inner {
+      padding-block: clamp(4rem, 10vw, 7rem);
+    }
+
+    .hero__title {
+      max-width: 18ch;
+      margin-top: 1rem;
+      font-size: clamp(2.5rem, 2rem + 3.5vw, 4.5rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .hero__lead {
+      max-width: 36rem;
+      margin-top: 1.5rem;
+      font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.25rem;
+    }
+
+    .hero__highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 2rem;
+      margin-top: 2.5rem;
+      color: var(--color-text-muted);
+      font-family: var(--font-tech);
+      font-size: 0.875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero__highlights li {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .hero__highlights li::before {
+      content: "";
+      width: 0.4375rem;
+      height: 0.4375rem;
+      background-color: var(--color-accent);
+      transform: rotate(45deg);
+    }
+
+    .hero__highlights strong {
+      color: var(--color-text-strong);
+      font-weight: 400;
+    }
+
+    @media (max-width: 47.99em) {
+      .hero__bg {
+        object-position: 65% center;
+      }
+
+      .hero::before {
+        background: linear-gradient(0deg, var(--color-bg) 15%, rgb(0 31 51 / 0.8) 60%, rgb(0 31 51 / 0.5) 100%);
+      }
+    }
+
+    /* ==========================================================================
+       7. Sections (structure commune)
+       ========================================================================== */
+    .section {
+      padding-block: clamp(4rem, 3rem + 5vw, 7rem);
+    }
+
+    .section--alt {
+      background-color: var(--color-bg-alt);
+    }
+
+    .section-header {
+      max-width: 46rem;
+      margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+    }
+
+    .section-title {
+      margin-top: 0.75rem;
+      font-size: clamp(1.875rem, 1.5rem + 2vw, 3rem);
+      text-transform: uppercase;
+    }
+
+    .section-intro {
+      margin-top: 1rem;
+      font-size: 1.0625rem;
+    }
+
+    /* ==========================================================================
+       8. Atouts
+       ========================================================================== */
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature {
+      padding: 1.75rem;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+    }
+
+    .feature__icon {
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .feature__icon .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .feature__title {
+      margin-top: 1.25rem;
+      font-size: 1.125rem;
+      text-transform: uppercase;
+    }
+
+    .feature__text {
+      margin-top: 0.5rem;
+      font-size: 0.9375rem;
+    }
+
+    /* ==========================================================================
+       9. Catalogue
+       ========================================================================== */
+    .catalogue__toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .no-js .filters {
+      display: none;
+    }
+
+    .filter {
+      min-height: 2.5rem;
+      padding: 0.375rem 1rem;
+      border: 1px solid var(--color-border);
+      background-color: transparent;
+      color: var(--color-text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    .filter:hover {
+      border-color: var(--color-accent);
+      color: var(--color-text-strong);
+    }
+
+    .filter[aria-pressed="true"] {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent);
+      color: var(--color-on-accent);
+    }
+
+    .catalogue__count {
+      color: var(--color-text-muted);
+      font-family: var(--font-tech);
+      font-size: 0.875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .ship-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 16.5rem), 1fr));
+      gap: 1.5rem;
+    }
+
+    .ship {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      transition: border-color var(--transition);
+    }
+
+    .ship:hover {
+      border-color: var(--color-accent);
+    }
+
+    .ship__media {
+      position: relative;
+      aspect-ratio: 648 / 366;
+      overflow: hidden;
+      background-color: var(--color-bg-alt);
+    }
+
+    .ship__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms ease;
+    }
+
+    .ship:hover .ship__media img {
+      transform: scale(1.04);
+    }
+
+    .ship__badge {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      padding: 0.125rem 0.5rem;
+      background-color: rgb(0 31 51 / 0.85);
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      font-family: var(--font-tech);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ship__body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    .ship__maker {
+      color: var(--color-text-muted);
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ship__name {
+      margin-top: 0.25rem;
+      font-size: 1.375rem;
+      text-transform: uppercase;
+    }
+
+    .ship__role {
+      margin-top: 0.25rem;
+      color: var(--color-accent);
+      font-size: 0.9375rem;
+    }
+
+    .ship__specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem 1rem;
+      padding-block: 0.875rem;
+      border-block: 1px solid var(--color-border);
+    }
+
+    .ship__specs dt {
+      color: var(--color-text-muted);
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .ship__specs dd {
+      color: var(--color-text-strong);
+      font-family: var(--font-tech);
+      font-size: 0.9375rem;
+    }
+
+    .ship__footer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin-top: auto;
+    }
+
+    .ship__price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .ship__price data {
+      color: var(--color-text-strong);
+      font-size: 1.625rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .ship__tax {
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .catalogue__note {
+      margin-top: 2rem;
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* ==========================================================================
+       10. Étapes (comment ça marche)
+       ========================================================================== */
+    .steps__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+      gap: 1.5rem;
+    }
+
+    .step {
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--color-border);
+    }
+
+    .step__number {
+      display: block;
+      color: var(--color-accent);
+      font-family: var(--font-tech);
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .step__title {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .step__text {
+      margin-top: 0.5rem;
+    }
+
+    /* ==========================================================================
+       11. Appel à l'action
+       ========================================================================== */
+    .cta__panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(2.5rem, 2rem + 4vw, 5rem) clamp(1.25rem, 5vw, 4rem);
+      background:
+        radial-gradient(circle at 85% 0%, rgb(84 173 247 / 0.2), transparent 55%),
+        var(--color-surface);
+      border: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .cta__text {
+      max-width: 38rem;
+      margin-top: 1rem;
+      font-size: 1.0625rem;
+    }
+
+    .cta__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* ==========================================================================
+       12. Footer
+       ========================================================================== */
+    .site-footer {
+      padding-block: 4rem 2rem;
+      background-color: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border);
+      font-size: 0.9375rem;
+    }
+
+    .site-footer__top {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .site-footer__about {
+      max-width: 22rem;
+      margin-top: 1rem;
+      color: var(--color-text-muted);
+    }
+
+    .site-footer__nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-col__title {
+      color: var(--color-text-strong);
+      font-size: 0.875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-col__list {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .footer-col__list a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-col__list a:hover {
+      color: var(--color-text-strong);
+    }
+
+    .site-footer__bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem 2rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: 0.8125rem;
+    }
+
+    .site-footer__legal {
+      max-width: 60rem;
+    }
+
+    @media (min-width: 48em) {
+      .site-footer__top {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      }
+    }
+
+    /* ==========================================================================
+       13. Préférences d'accessibilité
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Icônes SVG réutilisées dans la page via <use> -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="icon-logo" viewBox="0 0 32 32">
+      <path d="M16 2.5 29.5 16 16 29.5 2.5 16Z"/>
+      <path d="m10 18.5 6-6 6 6"/>
+    </symbol>
+    <symbol id="icon-caret" viewBox="0 0 10 6">
+      <path d="M0 0h10L5 6Z" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-cart" viewBox="0 0 24 24">
+      <path d="M3 4h2l2.4 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6"/>
+      <circle cx="9" cy="19" r="1.5"/>
+      <circle cx="17" cy="19" r="1.5"/>
+    </symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 12h18"/>
+      <path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 21a8 8 0 0 1 16 0"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M3 6h18M3 12h18M3 18h18"/>
+    </symbol>
+    <symbol id="icon-flight" viewBox="0 0 24 24">
+      <path d="M3 11.5 21 3l-8.5 18-2.5-7.5L3 11.5Z"/>
+    </symbol>
+    <symbol id="icon-hangar" viewBox="0 0 24 24">
+      <path d="M3 21V9l9-6 9 6v12"/>
+      <path d="M7 21v-8h10v8"/>
+      <path d="M7 17h10"/>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+      <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/>
+      <path d="m8.5 12 2.5 2.5 4.5-5"/>
+    </symbol>
+    <symbol id="icon-support" viewBox="0 0 24 24">
+      <path d="M4 14v-2a8 8 0 0 1 16 0v2"/>
+      <rect x="3" y="14" width="4" height="6" rx="1"/>
+      <rect x="17" y="14" width="4" height="6" rx="1"/>
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- ========================================================================
+       HEADER — les liens et boutons n'ont pas encore de cible
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <p class="topbar__brand">Nova Hangar · Revendeur indépendant de vaisseaux Star Citizen</p>
+      </div>
+    </div>
+
+    <div class="navbar">
+      <div class="container navbar__inner">
+        <a class="logo" href="#">
+          <svg class="icon logo__mark" aria-hidden="true" focusable="false"><use href="#icon-logo"></use></svg>
+          <span>Nova <span class="logo__accent">Hangar</span></span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navigation principale">
+          <ul class="main-nav__list" id="menu-principal">
+            <li>
+              <button class="main-nav__link" type="button">
+                Jeux
+                <svg class="main-nav__caret" aria-hidden="true" focusable="false"><use href="#icon-caret"></use></svg>
+              </button>
+            </li>
+            <li><a class="main-nav__link" href="#">Boutique</a></li>
+            <li>
+              <button class="main-nav__link" type="button">
+                Explorer
+                <svg class="main-nav__caret" aria-hidden="true" focusable="false"><use href="#icon-caret"></use></svg>
+              </button>
+            </li>
+            <li>
+              <button class="main-nav__link" type="button">
+                Communauté
+                <svg class="main-nav__caret" aria-hidden="true" focusable="false"><use href="#icon-caret"></use></svg>
+              </button>
+            </li>
+            <li>
+              <button class="main-nav__link" type="button">
+                Support
+                <svg class="main-nav__caret" aria-hidden="true" focusable="false"><use href="#icon-caret"></use></svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="navbar__tools">
+          <a class="btn btn--primary btn--sm navbar__play" href="#">Jouer maintenant</a>
+          <button class="tool" type="button">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-cart"></use></svg>
+            <span class="visually-hidden">Panier</span>
+          </button>
+          <button class="tool" type="button">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-globe"></use></svg>
+            <span class="tool__label"><span class="visually-hidden">Devise et langue : </span>EUR / FR</span>
+          </button>
+          <a class="tool" href="#">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-user"></use></svg>
+            <span class="tool__label">Connexion</span>
+          </a>
+          <button class="tool navbar__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" data-nav-toggle>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-menu"></use></svg>
+            <span class="visually-hidden">Menu</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- ======================================================================
+         HERO
+         ====================================================================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero__bg" src="https://media.robertsspaceindustries.com/oe0wikh6g3ltm/wallpaper_1920x1080.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+      <div class="container hero__inner">
+        <p class="eyebrow">Boutique de vaisseaux · Star Citizen</p>
+        <h1 class="hero__title" id="hero-title">Prenez les commandes de votre <span class="text-accent">prochain vaisseau</span></h1>
+        <p class="hero__lead">Du chasseur léger au cargo lourd, trouvez le vaisseau qui correspond à votre style de jeu et rejoignez le ’Verse dès aujourd’hui.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#catalogue">Voir le catalogue</a>
+          <a class="btn btn--outline" href="#fonctionnement">Comment ça marche</a>
+        </div>
+        <ul class="hero__highlights">
+          <li><span><strong>12</strong> vaisseaux prêts au vol</span></li>
+          <li><span>À partir de <strong>31,32&nbsp;€</strong></span></li>
+          <li><span>Prix <strong>TTC</strong> en euros</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ATOUTS
+         ====================================================================== -->
+    <section class="section section--alt" aria-labelledby="features-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Pourquoi Nova Hangar</p>
+          <h2 class="section-title" id="features-title">Équipez votre flotte en toute confiance</h2>
+        </header>
+
+        <ul class="features__grid">
+          <li class="feature">
+            <span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-flight"></use></svg></span>
+            <h3 class="feature__title">Prêts au vol</h3>
+            <p class="feature__text">Tous les vaisseaux du catalogue sont «&nbsp;Flight Ready&nbsp;» : jouables dès maintenant dans l’univers persistant.</p>
+          </li>
+          <li class="feature">
+            <span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-hangar"></use></svg></span>
+            <h3 class="feature__title">Direction votre hangar</h3>
+            <p class="feature__text">Votre vaisseau rejoint votre hangar RSI, prêt à être récupéré au terminal ASOP de n’importe quel spatioport.</p>
+          </li>
+          <li class="feature">
+            <span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-shield"></use></svg></span>
+            <h3 class="feature__title">Paiement sécurisé</h3>
+            <p class="feature__text">Réglez en euros, TVA incluse, sans conversion de devise ni mauvaise surprise.</p>
+          </li>
+          <li class="feature">
+            <span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-support"></use></svg></span>
+            <h3 class="feature__title">Support citoyen</h3>
+            <p class="feature__text">Une équipe de joueurs vous conseille avant et après votre achat. o7</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CATALOGUE
+         Prix relevés sur le store officiel RSI le 14/09/2026 (EUR, TVA 20 % incluse)
+         ====================================================================== -->
+    <section class="section" id="catalogue" aria-labelledby="catalogue-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Boutique</p>
+          <h2 class="section-title" id="catalogue-title">Catalogue des vaisseaux</h2>
+          <p class="section-intro">Une sélection de vaisseaux standalone, du starter au cargo lourd. Prix relevés sur le store officiel RSI le 14&nbsp;septembre&nbsp;2026.</p>
+        </header>
+
+        <div class="catalogue__toolbar">
+          <div class="filters" role="group" aria-label="Filtrer par catégorie">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous</button>
+            <button class="filter" type="button" data-filter="combat" aria-pressed="false">Combat</button>
+            <button class="filter" type="button" data-filter="multirole" aria-pressed="false">Multirôle</button>
+            <button class="filter" type="button" data-filter="transport" aria-pressed="false">Transport</button>
+            <button class="filter" type="button" data-filter="industrie" aria-pressed="false">Industrie</button>
+            <button class="filter" type="button" data-filter="exploration" aria-pressed="false">Exploration</button>
+          </div>
+          <p class="catalogue__count" aria-live="polite" data-ship-count>12 vaisseaux</p>
+        </div>
+
+        <ul class="ship-grid">
+          <li data-category="combat">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/cm90yxr38vd5h/slideshow.jpeg" alt="Aurora Mk I MR de Roberts Space Industries" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Roberts Space Industries</p>
+                  <h3 class="ship__name">Aurora Mk I MR</h3>
+                  <p class="ship__role">Chasseur léger</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Petit</dd></div>
+                  <div><dt>Équipage</dt><dd>1</dd></div>
+                  <div><dt>Fret</dt><dd>3&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>227&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="31.32">31,32&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Aurora Mk I MR</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="multirole">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://robertsspaceindustries.com/media/cpq6ly29wmi1br/slideshow/56745675467.jpg" alt="Mustang Alpha de Consolidated Outland" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Consolidated Outland</p>
+                  <h3 class="ship__name">Mustang Alpha</h3>
+                  <p class="ship__role">Starter / Fret léger</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Petit</dd></div>
+                  <div><dt>Équipage</dt><dd>1</dd></div>
+                  <div><dt>Fret</dt><dd>4&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>228&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="31.32">31,32&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Mustang Alpha</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="transport">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/zi03zg1dwf9d5/slideshow.jpg" alt="Avenger Titan d’Aegis Dynamics" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Aegis Dynamics</p>
+                  <h3 class="ship__name">Avenger Titan</h3>
+                  <p class="ship__role">Fret léger</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Petit</dd></div>
+                  <div><dt>Équipage</dt><dd>1</dd></div>
+                  <div><dt>Fret</dt><dd>8&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>262&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="62.64">62,64&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Avenger Titan</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="combat">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/8f2vr8tia1fe4/slideshow.png" alt="Arrow d’Anvil Aerospace" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Anvil Aerospace</p>
+                  <h3 class="ship__name">Arrow</h3>
+                  <p class="ship__role">Chasseur léger</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Petit</dd></div>
+                  <div><dt>Équipage</dt><dd>1</dd></div>
+                  <div><dt>Fret</dt><dd>—</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>229&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="78.30">78,30&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Arrow</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="combat">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/xxdvidtr1ze6b/slideshow.jpg" alt="Gladius d’Aegis Dynamics" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Aegis Dynamics</p>
+                  <h3 class="ship__name">Gladius</h3>
+                  <p class="ship__role">Chasseur léger</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Petit</dd></div>
+                  <div><dt>Équipage</dt><dd>1</dd></div>
+                  <div><dt>Fret</dt><dd>—</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>226&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="93.96">93,96&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Gladius</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="multirole">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/b376gfdngkuxe/slideshow.jpg" alt="Cutlass Black de Drake Interplanetary" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Drake Interplanetary</p>
+                  <h3 class="ship__name">Cutlass Black</h3>
+                  <p class="ship__role">Fret léger / Chasseur moyen</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Moyen</dd></div>
+                  <div><dt>Équipage</dt><dd>3</dd></div>
+                  <div><dt>Fret</dt><dd>46&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>217&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="114.84">114,84&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Cutlass Black</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="transport">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/z3mllk6zi0x7r/slideshow.jpg" alt="Freelancer de MISC" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">MISC</p>
+                  <h3 class="ship__name">Freelancer</h3>
+                  <p class="ship__role">Fret léger</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Moyen</dd></div>
+                  <div><dt>Équipage</dt><dd>4</dd></div>
+                  <div><dt>Fret</dt><dd>66&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>197&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="114.84">114,84&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Freelancer</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="industrie">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/bsrfd5pqb769v/slideshow.jpg" alt="Prospector de MISC" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">MISC</p>
+                  <h3 class="ship__name">Prospector</h3>
+                  <p class="ship__role">Minage léger</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Petit</dd></div>
+                  <div><dt>Équipage</dt><dd>1</dd></div>
+                  <div><dt>Fret</dt><dd>—</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>156&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="161.82">161,82&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Prospector</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="combat">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/k7nyica1xpyic/slideshow.jpg" alt="F7C Hornet Mk II d’Anvil Aerospace" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Anvil Aerospace</p>
+                  <h3 class="ship__name">F7C Hornet Mk II</h3>
+                  <p class="ship__role">Chasseur moyen</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Petit</dd></div>
+                  <div><dt>Équipage</dt><dd>1</dd></div>
+                  <div><dt>Fret</dt><dd>—</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>220&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="182.70">182,70&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : F7C Hornet Mk II</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="multirole">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/22w6c61zkr4vl/slideshow.jpg" alt="Constellation Andromeda de Roberts Space Industries" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Roberts Space Industries</p>
+                  <h3 class="ship__name">Constellation Andromeda</h3>
+                  <p class="ship__role">Fret moyen / Canonnière</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Grand</dd></div>
+                  <div><dt>Équipage</dt><dd>4</dd></div>
+                  <div><dt>Fret</dt><dd>96&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>190&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="250.56">250,56&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Constellation Andromeda</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="exploration">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/yw0ptkfo860hp/slideshow.jpg" alt="Corsair de Drake Interplanetary" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Drake Interplanetary</p>
+                  <h3 class="ship__name">Corsair</h3>
+                  <p class="ship__role">Expédition</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Grand</dd></div>
+                  <div><dt>Équipage</dt><dd>4</dd></div>
+                  <div><dt>Fret</dt><dd>72&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>190&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="261.00">261,00&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : Corsair</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <li data-category="transport">
+            <article class="ship">
+              <div class="ship__media">
+                <img src="https://media.robertsspaceindustries.com/4w89ioralv999/slideshow.jpg" alt="C2 Hercules de Crusader Industries" width="648" height="366" loading="lazy" decoding="async">
+                <span class="ship__badge">Prêt au vol</span>
+              </div>
+              <div class="ship__body">
+                <hgroup>
+                  <p class="ship__maker">Crusader Industries</p>
+                  <h3 class="ship__name">C2 Hercules</h3>
+                  <p class="ship__role">Fret moyen</p>
+                </hgroup>
+                <dl class="ship__specs">
+                  <div><dt>Taille</dt><dd>Grand</dd></div>
+                  <div><dt>Équipage</dt><dd>2</dd></div>
+                  <div><dt>Fret</dt><dd>696&nbsp;SCU</dd></div>
+                  <div><dt>Vitesse SCM</dt><dd>160&nbsp;m/s</dd></div>
+                </dl>
+                <div class="ship__footer">
+                  <p class="ship__price"><data value="417.60">417,60&nbsp;€</data> <span class="ship__tax">TTC</span></p>
+                  <button class="btn btn--primary btn--block" type="button">Ajouter au panier<span class="visually-hidden"> : C2 Hercules</span></button>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+
+        <p class="catalogue__note">Prix TTC (TVA 20&nbsp;%) donnés à titre indicatif, susceptibles d’évoluer lors des ventes officielles.</p>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         COMMENT ÇA MARCHE
+         ====================================================================== -->
+    <section class="section section--alt" id="fonctionnement" aria-labelledby="steps-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Séquence de lancement</p>
+          <h2 class="section-title" id="steps-title">Comment ça marche</h2>
+        </header>
+
+        <ol class="steps__list">
+          <li class="step">
+            <span class="step__number" aria-hidden="true">01</span>
+            <h3 class="step__title">Choisissez votre vaisseau</h3>
+            <p class="step__text">Parcourez le catalogue et comparez rôle, taille, équipage et capacité de fret en SCU.</p>
+          </li>
+          <li class="step">
+            <span class="step__number" aria-hidden="true">02</span>
+            <h3 class="step__title">Validez votre commande</h3>
+            <p class="step__text">Ajoutez le vaisseau au panier et réglez en euros, TVA incluse.</p>
+          </li>
+          <li class="step">
+            <span class="step__number" aria-hidden="true">03</span>
+            <h3 class="step__title">Décollez</h3>
+            <p class="step__text">Le vaisseau arrive dans votre hangar : récupérez-le au terminal ASOP et partez explorer Stanton ou Pyro.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         APPEL À L'ACTION
+         ====================================================================== -->
+    <section class="section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta__panel">
+          <p class="eyebrow">o7, citoyen</p>
+          <h2 class="section-title" id="cta-title">Prêt à décoller&nbsp;?</h2>
+          <p class="cta__text">Une question sur un vaisseau, un pack de jeu ou une amélioration (CCU)&nbsp;? Notre équipe vous répond.</p>
+          <div class="cta__actions">
+            <a class="btn btn--primary" href="#catalogue">Choisir mon vaisseau</a>
+            <a class="btn btn--outline" href="#">Nous contacter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div>
+          <a class="logo" href="#">
+            <svg class="icon logo__mark" aria-hidden="true" focusable="false"><use href="#icon-logo"></use></svg>
+            <span>Nova <span class="logo__accent">Hangar</span></span>
+          </a>
+          <p class="site-footer__about">Revendeur indépendant de vaisseaux pour Star Citizen. Prix en euros, TVA incluse.</p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Liens du pied de page">
+          <div>
+            <h2 class="footer-col__title">Boutique</h2>
+            <ul class="footer-col__list">
+              <li><a href="#">Vaisseaux</a></li>
+              <li><a href="#">Packs de jeu</a></li>
+              <li><a href="#">Améliorations (CCU)</a></li>
+              <li><a href="#">Peintures</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="footer-col__title">Aide</h2>
+            <ul class="footer-col__list">
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Nous contacter</a></li>
+              <li><a href="#">Suivi de commande</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="footer-col__title">Informations</h2>
+            <ul class="footer-col__list">
+              <li><a href="#">Mentions légales</a></li>
+              <li><a href="#">Conditions générales de vente</a></li>
+              <li><a href="#">Confidentialité</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p class="site-footer__legal">Site non officiel, non affilié au groupe Cloud Imperium. Star Citizen®, Squadron 42®, Roberts Space Industries® et Cloud Imperium® sont des marques déposées de Cloud Imperium Rights LLC. Visuels des vaisseaux © Cloud Imperium Games.</p>
+        <p>© 2026 Nova Hangar</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    // ==========================================================================
+    // 1. Liens provisoires : évite le retour en haut de page tant qu'ils n'ont pas de cible
+    // ==========================================================================
+    document.addEventListener("click", (event) => {
+      if (event.target.closest('a[href="#"]')) {
+        event.preventDefault();
+      }
+    });
+
+    // ==========================================================================
+    // 2. Menu mobile
+    // ==========================================================================
+    const navToggle = document.querySelector("[data-nav-toggle]");
+    const navMenu = document.getElementById("menu-principal");
+    const desktopQuery = window.matchMedia("(min-width: 80em)");
+
+    function setMenuOpen(isOpen) {
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navMenu.classList.toggle("is-open", isOpen);
+    }
+
+    navToggle.addEventListener("click", () => {
+      setMenuOpen(navToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && navMenu.classList.contains("is-open")) {
+        setMenuOpen(false);
+        navToggle.focus();
+      }
+    });
+
+    desktopQuery.addEventListener("change", (event) => {
+      if (event.matches) {
+        setMenuOpen(false);
+      }
+    });
+
+    // ==========================================================================
+    // 3. Filtres du catalogue
+    // ==========================================================================
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const shipItems = document.querySelectorAll("[data-category]");
+    const shipCount = document.querySelector("[data-ship-count]");
+
+    function applyFilter(category) {
+      let visibleCount = 0;
+
+      shipItems.forEach((item) => {
+        const isVisible = category === "all" || item.dataset.category === category;
+        item.hidden = !isVisible;
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      filterButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.filter === category));
+      });
+
+      shipCount.textContent = `${visibleCount} vaisseau${visibleCount > 1 ? "x" : ""}`;
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => applyFilter(button.dataset.filter));
+    });
+  </script>
+</body>
+</html>
