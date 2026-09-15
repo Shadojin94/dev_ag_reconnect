@@ -47,7 +47,7 @@ async function readResponseError(response: Response): Promise<string | undefined
 
 function errorMessageFor(status: number, serverMessage: string | undefined): string {
   if (status === 401 || status === 403) return 'Clé NVIDIA refusée.'
-  if (status === 429) return 'Trop de requêtes, réessayez dans un instant.'
+  if (status === 429) return 'Limite de requêtes NVIDIA atteinte pour ce modèle, réessayez dans une minute.'
   return serverMessage ?? `Le service LLM a répondu ${status}.`
 }
 
