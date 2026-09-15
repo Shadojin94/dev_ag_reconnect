@@ -1,0 +1,36 @@
+# ATTENTION — emplacement et nom de dossier
+#
+# GitHub ne lit CODEOWNERS qu'à la racine du dépôt (ou dans .github/ ou docs/
+# à la racine). Placé ici, dans « Projet App Web/.github/ », ce fichier n'est PAS
+# actif : il sert pour l'instant de documentation d'équipe.
+#
+# De plus, CODEOWNERS ne gère pas de façon fiable les chemins contenant des
+# espaces. Pour l'activer réellement il faudra :
+#   - renommer le dossier du projet en « projet-app-web » (sans espaces), et
+#   - déplacer ce fichier vers .github/CODEOWNERS à la racine du dépôt.
+# Les deux touchent le dépôt partagé : à décider en équipe.
+
+# Relecteurs automatiques par périmètre.
+#
+# Tout est commenté tant que les rôles ne sont pas attribués et que les
+# identifiants GitHub ne sont pas confirmés (voir docs/ROLES.md).
+# Un identifiant erroné ici bloque silencieusement les demandes de relecture.
+#
+# Pour activer : remplacer les identifiants, décommenter, commiter.
+
+# Coquille de l'app et documentation — rôle Intégration & QA
+# /Projet App Web/src/app/        @Shadojin94
+# /Projet App Web/docs/           @Shadojin94
+
+# Bibliothèque de composants — rôle Front & UI
+# /Projet App Web/src/components/ @identifiant-github
+
+# Données et types — rôle Données & Services
+# /Projet App Web/src/services/   @identifiant-github
+# /Projet App Web/src/types/      @identifiant-github
+
+# Design system — rôle Design & Contenu
+# /Projet App Web/src/styles/     @identifiant-github
+
+# src/features/ n'a volontairement pas de propriétaire :
+# chacun est responsable de son propre dossier de feature.

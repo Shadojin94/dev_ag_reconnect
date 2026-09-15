@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formation IA : Développeur Augmenté — RECONNECT</title>
+<meta name="description" content="Portail de la formation IA : Développeur Augmenté (RECONNECT, 14-15 septembre 2026) : les sites de chacun, le projet commun Reconnect Assist et les supports de cours.">
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --muted: #55554f;
+    --border: #dcdcd4;
+    --accent: #0a6b4a;
+    --accent-contrast: #ffffff;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #14140f;
+      --surface: #1e1e17;
+      --text: #f2f2ec;
+      --muted: #b9b9ae;
+      --border: #3a3a30;
+      --accent: #3ddc9a;
+      --accent-contrast: #0a1a12;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #14140f;
+    --surface: #1e1e17;
+    --text: #f2f2ec;
+    --muted: #b9b9ae;
+    --border: #3a3a30;
+    --accent: #3ddc9a;
+    --accent-contrast: #0a1a12;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    padding: 2rem 1.25rem 3rem;
+  }
+  img{ max-width: 100%; }
+  [hidden]{ display: none !important; }
+  .wrap{ max-width: 960px; margin: 0 auto; }
+  header{ text-align: center; margin-bottom: 2.5rem; }
+  header h1{ font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0 0 0.4rem; }
+  header p{ margin: 0.2rem 0; color: var(--muted); }
+  header .formateur{ font-size: 0.95rem; }
+  section{ margin-bottom: 2.5rem; }
+  section > h2{
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .card h3{ margin: 0; font-size: 1.05rem; }
+  .card p{ margin: 0; color: var(--muted); font-size: 0.92rem; flex-grow: 1; }
+  .btn{
+    display: inline-block;
+    text-align: center;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    margin-top: 0.3rem;
+  }
+  .btn:hover{ opacity: 0.9; }
+  .btn:focus-visible, a:focus-visible{
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .links-secondary{ margin-top: 0.3rem; font-size: 0.9rem; }
+  .links-secondary a{ color: var(--accent); }
+  .list-links{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .list-links a{ color: var(--accent); font-weight: 600; text-decoration: none; }
+  .list-links a:hover{ text-decoration: underline; }
+  footer{
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.2rem;
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Formation IA : Développeur Augmenté</h1>
+    <p>14 et 15 septembre 2026 · PLB · RECONNECT</p>
+    <p class="formateur">Formateur : Cédric Atticot dit Ravino</p>
+  </header>
+
+  <section aria-labelledby="sites-h">
+    <h2 id="sites-h">Les sites de chacun</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Ashad — ONZE</h3>
+        <p>Superviser, entraîner et recruter pour les clubs professionnels.</p>
+        <a class="btn" href="./ashad/">Ouvrir le site</a>
+      </div>
+      <div class="card">
+        <h3>Nils — Dés &amp; Merveilles</h3>
+        <p>Boutique de jeux de société : ambiance, stratégie, enfants, cartes à collectionner.</p>
+        <a class="btn" href="./nils/">Ouvrir le site</a>
+      </div>
+      <div class="card">
+        <h3>Romain — Nova Hangar</h3>
+        <p>Vente de vaisseaux Star Citizen prêts au vol.</p>
+        <a class="btn" href="./romain/">Ouvrir le site</a>
+      </div>
+      <div class="card">
+        <h3>Cédric — Académie Jeet Kune Do</h3>
+        <p>Sois comme l'eau : intercepter plutôt que bloquer, simplifier plutôt que collectionner.</p>
+        <a class="btn" href="./cedric/jeet-kune-do/">Ouvrir le site</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="mvp-h">
+    <h2 id="mvp-h">Le projet commun</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Reconnect Assist (MVP)</h3>
+        <p>Assistant d'orientation vers des structures sociales, construit à quatre : base de connaissances, annuaire, assistant et intégration.</p>
+        <a class="btn" href="./mvp/">Ouvrir l'application</a>
+        <p class="links-secondary">
+          <a href="https://github.com/Shadojin94/dev_ag_reconnect/tree/main/Projet%20App%20Web">Code source sur GitHub</a>
+          ·
+          <a href="https://github.com/users/Shadojin94/projects/4">Tableau des tickets</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="supports-h">
+    <h2 id="supports-h">Les supports</h2>
+    <ul class="list-links">
+      <li><a href="./cours/">Le deck du cours du 15 septembre</a></li>
+      <li><a href="./cours/Reconnect-cours-agents-15-09-2026.pdf">Le support en PDF</a></li>
+      <li><a href="https://github.com/Shadojin94/dev_ag_reconnect/tree/main/Cours/reconnect-15sept-v2/kit">Le kit (skills, contrat de données, tickets)</a></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="apres-h">
+    <h2 id="apres-h">Continuer après la formation</h2>
+    <ul class="list-links">
+      <li><a href="https://github.com/Shadojin94/dev_ag_reconnect">Le dépôt du projet</a></li>
+      <li><a href="https://github.com/Shadojin94/dev_ag_reconnect/tree/main/Projet%20App%20Web/docs">La documentation du projet</a></li>
+      <li><a href="https://github.com/Shadojin94/dev_ag_reconnect/blob/main/Cours/reconnect-15sept-v2/kit/FICHE-5-ETAPES.md">La fiche des 5 étapes</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Mis à jour automatiquement à chaque push sur main.</p>
+  </footer>
+</div>
+</body>
+</html>
