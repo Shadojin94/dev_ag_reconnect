@@ -1,17 +1,17 @@
-// Comment brancher ton lot (Romain, KB-01) — ce fichier t'appartient.
-// 1. Expose `searchKnowledge` et `KnowledgeList` dans src/features/base-connaissances/index.ts.
-// 2. Décommente les 3 lignes marquées « À DÉCOMMENTER » ci-dessous :
+// Lot branché le 15/09/2026 (Romain, KB-01) — ce fichier t'appartient.
+// 1. `src/features/base-connaissances/index.ts` exposait `searchKnowledge` et `KnowledgeList`.
+// 2. Les 3 lignes marquées « À DÉCOMMENTER » ont été décommentées :
 //    - l'import du lot,
 //    - `searchKnowledge` et `KnowledgeList` dans l'objet exporté,
-//    - `ready: true` (et supprime `ready: false`).
-// 3. Remplace `Page` par la version de démonstration commentée plus bas.
-// Tant que rien n'est branché, la page affiche proprement « lot en attente ».
+//    - `ready: true` (et `ready: false` supprimé).
+// 3. `Page` a été remplacée par la version de démonstration.
 
-// À DÉCOMMENTER (1/3) :
-// import { KnowledgeList, searchKnowledge } from '../../features/base-connaissances'
+// À DÉCOMMENTER (1/3) : fait.
+import { KnowledgeList, searchKnowledge } from '../../features/base-connaissances'
 
-import { PendingLot } from '../../components/PendingLot'
+import { useAsync } from '../../lib/useAsync'
 import type { LearnerPage } from '../types'
+import styles from './learner.module.css'
 
 const PAGE = {
   name: 'Romain',
@@ -19,33 +19,38 @@ const PAGE = {
   issue: 2,
 }
 
-const PROVIDES = [
-  'searchKnowledge(query: OrientationQuery): Promise<KnowledgeItem[]>',
-  'KnowledgeList({ items, lang })',
-]
-
-const LINES = [
-  "import { KnowledgeList, searchKnowledge } from '../../features/base-connaissances'",
-  'searchKnowledge, KnowledgeList,',
-  'ready: true,',
-]
-
-// Version de démonstration à utiliser une fois le lot branché :
-//
-// function RomainPage() {
-//   const state = useAsync(() => searchKnowledge({ lang: 'fr', category: 'papiers' }))
-//   if (state.status === 'loading') return <p>Chargement des fiches…</p>
-//   if (state.status === 'error') return <p>La base de connaissances n'a pas répondu.</p>
-//   return <KnowledgeList items={state.data} lang="fr" />
-// }
-// (ajouter en haut : import { useAsync } from '../../lib/useAsync')
-
 const romain: LearnerPage = {
   ...PAGE,
-  ready: false,
-  // À DÉCOMMENTER (2/3) : searchKnowledge, KnowledgeList,
-  // À DÉCOMMENTER (3/3) : ready: true,
-  Page: () => <PendingLot lines={LINES} page={PAGE} provides={PROVIDES} />,
+  // À DÉCOMMENTER (2/3) : fait.
+  searchKnowledge,
+  KnowledgeList,
+  // À DÉCOMMENTER (3/3) : fait.
+  ready: true,
+  Page: () => {
+    const state = useAsync(() => searchKnowledge({ lang: 'fr' }))
+
+    return (
+      <>
+        <header className={styles.head}>
+          <h1 className={styles.title}>Base de connaissances</h1>
+          <p className={styles.intro}>
+            Chaque fiche cite sa source et la date à laquelle elle a été consultée.
+          </p>
+        </header>
+
+        {state.status === 'loading' && <p className={styles.message}>Chargement des fiches…</p>}
+        {state.status === 'error' && (
+          <p className={styles.error}>La base de connaissances n'a pas répondu.</p>
+        )}
+        {state.status === 'done' && (
+          <>
+            <p className={styles.count}>{state.data.length} fiches sourcées</p>
+            <KnowledgeList items={state.data} lang="fr" />
+          </>
+        )}
+      </>
+    )
+  },
 }
 
 export default romain

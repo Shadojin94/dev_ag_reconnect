@@ -1,17 +1,17 @@
-// Comment brancher ton lot (Nils, ANNU-01) — ce fichier t'appartient.
-// 1. Ton index.ts expose déjà `findOrganisations` et `OrganisationList`.
-// 2. Décommente les 3 lignes marquées « À DÉCOMMENTER » ci-dessous :
+// Lot branché le 15/09/2026 (Nils, ANNU-01) — ce fichier t'appartient.
+// 1. `src/features/annuaire/index.ts` exposait `findOrganisations` et `OrganisationList`.
+// 2. Les 3 lignes marquées « À DÉCOMMENTER » ont été décommentées :
 //    - l'import du lot,
 //    - `findOrganisations` et `OrganisationList` dans l'objet exporté,
-//    - `ready: true` (et supprime `ready: false`).
-// 3. Remplace `Page` par la version de démonstration commentée plus bas.
-// Tant que rien n'est branché, la page affiche proprement « lot en attente ».
+//    - `ready: true` (et `ready: false` supprimé).
+// 3. `Page` a été remplacée par la version de démonstration.
 
-// À DÉCOMMENTER (1/3) :
-// import { findOrganisations, OrganisationList } from '../../features/annuaire'
+// À DÉCOMMENTER (1/3) : fait.
+import { findOrganisations, OrganisationList } from '../../features/annuaire'
 
-import { PendingLot } from '../../components/PendingLot'
+import { useAsync } from '../../lib/useAsync'
 import type { LearnerPage } from '../types'
+import styles from './learner.module.css'
 
 const PAGE = {
   name: 'Nils',
@@ -19,33 +19,36 @@ const PAGE = {
   issue: 3,
 }
 
-const PROVIDES = [
-  'findOrganisations(query: OrientationQuery): Promise<Organisation[]>',
-  'OrganisationList({ organisations, lang })',
-]
-
-const LINES = [
-  "import { findOrganisations, OrganisationList } from '../../features/annuaire'",
-  'findOrganisations, OrganisationList,',
-  'ready: true,',
-]
-
-// Version de démonstration à utiliser une fois le lot branché :
-//
-// function NilsPage() {
-//   const state = useAsync(() => findOrganisations({ lang: 'fr' }))
-//   if (state.status === 'loading') return <p>Chargement de l'annuaire…</p>
-//   if (state.status === 'error') return <p>L'annuaire n'a pas répondu.</p>
-//   return <OrganisationList lang="fr" organisations={state.data} />
-// }
-// (ajouter en haut : import { useAsync } from '../../lib/useAsync')
-
 const nils: LearnerPage = {
   ...PAGE,
-  ready: false,
-  // À DÉCOMMENTER (2/3) : findOrganisations, OrganisationList,
-  // À DÉCOMMENTER (3/3) : ready: true,
-  Page: () => <PendingLot lines={LINES} page={PAGE} provides={PROVIDES} />,
+  // À DÉCOMMENTER (2/3) : fait.
+  findOrganisations,
+  OrganisationList,
+  // À DÉCOMMENTER (3/3) : fait.
+  ready: true,
+  Page: () => {
+    const state = useAsync(() => findOrganisations({ lang: 'fr' }))
+
+    return (
+      <>
+        <header className={styles.head}>
+          <h1 className={styles.title}>Annuaire des structures</h1>
+          <p className={styles.intro}>
+            Toutes les structures du jeu local, avec leurs coordonnées et leur source.
+          </p>
+        </header>
+
+        {state.status === 'loading' && <p className={styles.message}>Chargement de l'annuaire…</p>}
+        {state.status === 'error' && <p className={styles.error}>L'annuaire n'a pas répondu.</p>}
+        {state.status === 'done' && (
+          <>
+            <p className={styles.count}>{state.data.length} structures</p>
+            <OrganisationList lang="fr" organisations={state.data} />
+          </>
+        )}
+      </>
+    )
+  },
 }
 
 export default nils

@@ -21,9 +21,11 @@ async function noOrganisations(): Promise<Organisation[]> {
 }
 
 export const orientationService: OrientationService = {
-  searchKnowledge: registry.romain.searchKnowledge ?? noKnowledge,
+  // Lecture du registre au moment de l'appel, pas au chargement du module :
+  // une page d'apprenant peut importer ce service (cycle d'imports sans crash).
+  searchKnowledge: (query) => (registry.romain.searchKnowledge ?? noKnowledge)(query),
 
-  findOrganisations: registry.nils.findOrganisations ?? noOrganisations,
+  findOrganisations: (query) => (registry.nils.findOrganisations ?? noOrganisations)(query),
 
   // Mode « sans IA » : le texte est construit à partir des fiches du jeu local,
   // et chaque source affichée vient d'une fiche réelle.
