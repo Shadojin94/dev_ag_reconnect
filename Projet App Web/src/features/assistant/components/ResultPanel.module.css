@@ -1,0 +1,76 @@
+/* Couleurs : tokens globaux de src/index.css.
+   Gabarit : variables --assist-* définies dans Assistant.module.css. */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-m);
+}
+
+.banner {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--assist-radius);
+  color: var(--text-h);
+  font-size: var(--assist-font-s);
+  margin: 0;
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+}
+
+.heading {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: var(--assist-font-m);
+  margin: 0 0 var(--assist-gap-s);
+}
+
+.answer {
+  margin: 0;
+  /* Un mot très long ne doit jamais élargir la page sur petit écran. */
+  overflow-wrap: anywhere;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-s);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  background: var(--social-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--assist-radius);
+  padding: var(--assist-gap-m);
+}
+
+.itemTitle {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: var(--assist-font-m);
+  margin: 0 0 var(--assist-gap-xs);
+  overflow-wrap: anywhere;
+}
+
+.itemSummary {
+  margin: 0 0 var(--assist-gap-xs);
+  overflow-wrap: anywhere;
+}
+
+.source {
+  color: var(--accent);
+  display: inline-block;
+  font-size: var(--assist-font-s);
+  overflow-wrap: anywhere;
+}
+
+.source:focus-visible {
+  outline: var(--assist-focus-w) solid var(--accent);
+  outline-offset: var(--assist-focus-off);
+}
+
+.unverified {
+  color: var(--text);
+}

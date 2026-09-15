@@ -1,0 +1,65 @@
+/* Couleurs : tokens globaux de src/index.css.
+   Gabarit : variables --assist-* définies dans Assistant.module.css. */
+
+.exchange {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-s);
+}
+
+/* La question de l'usager : alignée à droite, comme dans une messagerie. */
+.user {
+  align-self: flex-end;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--assist-radius);
+  color: var(--text-h);
+  margin: 0;
+  max-width: 85%;
+  overflow-wrap: anywhere;
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+}
+
+.assistant {
+  background: var(--social-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--assist-radius);
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-s);
+  padding: var(--assist-gap-m);
+}
+
+.notice {
+  color: var(--text-h);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--assist-font-s);
+  gap: var(--assist-gap-xs);
+  margin: 0;
+}
+
+.noticeLine {
+  display: block;
+}
+
+.understood {
+  color: var(--text);
+  font-size: var(--assist-font-s);
+  margin: 0;
+}
+
+.understood b {
+  color: var(--text-h);
+}
+
+.pending,
+.plain {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.pending {
+  color: var(--text);
+  font-style: italic;
+}

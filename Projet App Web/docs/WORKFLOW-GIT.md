@@ -69,6 +69,7 @@ Le gabarit se remplit tout seul à l'ouverture.
 - **Le build passe** (`npm run build` et `npm run lint`) — sinon la PR attend.
 - Relire n'est pas chercher la faute : poser une question sur du code qu'on ne
   comprend pas est déjà une relecture utile.
+- Un check automatique (CI) lint+build tourne sur chaque PR ; rouge = pas de merge.
 
 ## Conflits
 

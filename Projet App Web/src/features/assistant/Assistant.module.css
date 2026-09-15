@@ -1,0 +1,155 @@
+/* Assistant d'orientation (lot ASSIST-01).
+ *
+ * Couleurs et polices : tokens globaux de src/index.css (--text, --text-h,
+ * --bg, --border, --accent, --accent-bg, --accent-border, --sans, --heading).
+ *
+ * Le projet n'a pas encore de tokens d'espacement ni de rayon : src/styles/ ne
+ * contient qu'un README, et ce dossier appartient au rôle Design & Contenu.
+ * Les valeurs de gabarit sont donc déclarées une seule fois ici, portées par
+ * la feature, et préfixées --assist-. Le jour où src/styles/ expose les siennes,
+ * il suffit de remplacer ce bloc par les tokens du projet — aucun autre fichier
+ * de la feature ne contient de valeur en dur.
+ */
+
+/* Le projet n'a pas de réinitialisation globale : box-sizing n'est posé que
+   sur #root dans src/index.css. Sans cette règle, une largeur de 100 %
+   additionnée au padding déborde — constaté à 400 px sur le champ ville. */
+.assistant,
+.assistant *,
+.assistant *::before,
+.assistant *::after {
+  box-sizing: border-box;
+}
+
+.assistant {
+  --assist-gap-xs: 0.25rem;
+  --assist-gap-s: 0.5rem;
+  --assist-gap-m: 1rem;
+  --assist-radius: 0.5rem;
+  --assist-target: 44px;
+  --assist-font-s: 0.875rem;
+  --assist-font-m: 1rem;
+  --assist-font-l: 1.5rem;
+  --assist-focus-w: 2px;
+  --assist-focus-off: 2px;
+  --assist-measure: 42rem;
+
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  /* #root centre tout le texte (gabarit Vite, src/index.css). Un formulaire
+     se lit aligné à gauche : on rétablit le sens de lecture pour la feature,
+     sans toucher aux styles globaux qui appartiennent à l'intégration. */
+  text-align: start;
+  flex-direction: column;
+  font-family: var(--sans);
+  gap: var(--assist-gap-m);
+  /* Mobile d'abord : une colonne pleine largeur, élargie plus bas. */
+  margin: 0 auto;
+  max-width: var(--assist-measure);
+  padding: var(--assist-gap-m);
+  width: 100%;
+}
+
+.title {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: var(--assist-font-l);
+  margin: 0;
+}
+
+.intro {
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-s);
+}
+
+.label {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: var(--assist-font-s);
+  font-weight: 600;
+}
+
+.input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--assist-radius);
+  color: var(--text-h);
+  font: inherit;
+  min-height: var(--assist-target);
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+  width: 100%;
+}
+
+.input:focus-visible {
+  outline: var(--assist-focus-w) solid var(--accent);
+  outline-offset: var(--assist-focus-off);
+}
+
+.hint {
+  color: var(--text);
+  font-size: var(--assist-font-s);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--assist-gap-s);
+}
+
+.submit,
+.secondary {
+  border-radius: var(--assist-radius);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  min-height: var(--assist-target);
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+}
+
+.submit {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--bg);
+}
+
+.submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.secondary {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.submit:focus-visible,
+.secondary:focus-visible {
+  outline: var(--assist-focus-w) solid var(--accent);
+  outline-offset: var(--assist-focus-off);
+}
+
+.status:empty {
+  display: none;
+}
+
+.message {
+  background: var(--code-bg);
+  border-radius: var(--assist-radius);
+  color: var(--text-h);
+  margin: 0;
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+}
+
+@media (min-width: 40em) {
+  .assistant {
+    padding: calc(var(--assist-gap-m) * 2);
+  }
+}

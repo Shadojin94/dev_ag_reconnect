@@ -1,0 +1,84 @@
+/* Tokens Reconnect Assist — source unique des valeurs visuelles.
+   Aucun #hex ni taille en dur ailleurs que dans ce fichier.
+   Thème clair par défaut, thème sombre via prefers-color-scheme. */
+
+:root {
+  /* Couleurs — accent « service public » vert/bleu, contraste >= 4.5:1 sur --color-surface */
+  --color-bg: #f5f7f6;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eef2f1;
+  --color-border: #d4dbd9;
+  --color-text: #1b2422;
+  --color-text-muted: #4f5a57;
+  --color-accent: #0f6b52;
+  --color-accent-strong: #0a4e3b;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft: #e2efea;
+  --color-link: #14563f;
+  --color-warning-bg: #fdf3e3;
+  --color-warning-text: #6b4a12;
+  --color-warning-border: #e3c893;
+  --color-danger-text: #8a2222;
+  --color-focus: #14603f;
+
+  /* Typographie */
+  --font-sans: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --font-size-xs: 0.8125rem;
+  --font-size-sm: 0.9375rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.1875rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.9375rem;
+  --line-height-tight: 1.25;
+  --line-height-base: 1.55;
+  --font-weight-normal: 400;
+  --font-weight-medium: 550;
+  --font-weight-bold: 700;
+
+  /* Espacements */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  /* Rayons, bordures, ombres */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-pill: 999px;
+  --border-width: 1px;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 1px 3px rgb(0 0 0 / 0.08);
+
+  /* Focus */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+
+  /* Gabarit */
+  --layout-max-width: 60rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #101716;
+    --color-surface: #18211f;
+    --color-surface-alt: #202b28;
+    --color-border: #32403c;
+    --color-text: #eaf1ee;
+    --color-text-muted: #aebbb6;
+    --color-accent: #5fc8a3;
+    --color-accent-strong: #8ad9bd;
+    --color-accent-contrast: #0a2019;
+    --color-accent-soft: #1d332c;
+    --color-link: #7ed3b2;
+    --color-warning-bg: #2e2617;
+    --color-warning-text: #f0d5a1;
+    --color-warning-border: #5d4a22;
+    --color-danger-text: #f3a9a9;
+    --color-focus: #7ed3b2;
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4), 0 1px 3px rgb(0 0 0 / 0.3);
+  }
+}
