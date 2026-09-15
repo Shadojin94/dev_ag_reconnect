@@ -1,0 +1,182 @@
+/* Assistant conversationnel (lot ASSIST-01).
+ *
+ * Couleurs et polices : tokens globaux de src/index.css.
+ * Gabarit : les variables --assist-* sont déclarées par .chat, comme dans
+ * Assistant.module.css, pour que les composants internes partagés (Exchange,
+ * ResultPanel, ContactList) trouvent les mêmes valeurs dans les deux parcours.
+ */
+
+.chat,
+.chat *,
+.chat *::before,
+.chat *::after {
+  box-sizing: border-box;
+}
+
+.chat {
+  --assist-gap-xs: 0.25rem;
+  --assist-gap-s: 0.5rem;
+  --assist-gap-m: 1rem;
+  --assist-radius: 0.5rem;
+  --assist-target: 44px;
+  --assist-font-s: 0.875rem;
+  --assist-font-m: 1rem;
+  --assist-font-l: 1.5rem;
+  --assist-focus-w: 2px;
+  --assist-focus-off: 2px;
+  --assist-measure: 42rem;
+
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sans);
+  gap: var(--assist-gap-m);
+  margin: 0 auto;
+  max-width: var(--assist-measure);
+  padding: var(--assist-gap-m);
+  /* #root centre tout le texte (gabarit Vite) : une conversation se lit à gauche. */
+  text-align: start;
+  width: 100%;
+}
+
+.title {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: var(--assist-font-l);
+  margin: 0;
+}
+
+.intro {
+  margin: 0;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-s);
+}
+
+.suggestionsLabel {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: var(--assist-font-s);
+  font-weight: 600;
+  margin: 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--assist-gap-s);
+}
+
+.chip {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--assist-radius);
+  color: var(--text-h);
+  cursor: pointer;
+  font: inherit;
+  min-height: var(--assist-target);
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+}
+
+.chip:hover {
+  border-color: var(--accent-border);
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-m);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-s);
+}
+
+.label {
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: var(--assist-font-s);
+  font-weight: 600;
+}
+
+/* Mobile d'abord : le champ passe au-dessus du bouton, puis se met en ligne. */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--assist-gap-s);
+}
+
+.input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--assist-radius);
+  color: var(--text-h);
+  font: inherit;
+  min-height: var(--assist-target);
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+  width: 100%;
+}
+
+.send,
+.reset {
+  border-radius: var(--assist-radius);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  min-height: var(--assist-target);
+  padding: var(--assist-gap-s) var(--assist-gap-m);
+}
+
+.send {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--bg);
+  flex: none;
+}
+
+.send:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.reset {
+  align-self: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.chip:focus-visible,
+.input:focus-visible,
+.send:focus-visible,
+.reset:focus-visible {
+  outline: var(--assist-focus-w) solid var(--accent);
+  outline-offset: var(--assist-focus-off);
+}
+
+/* Annonce lue par les lecteurs d'écran, sans occuper de place à l'écran. */
+.srOnly {
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (min-width: 30em) {
+  .entry {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}
