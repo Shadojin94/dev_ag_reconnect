@@ -1,0 +1,80 @@
+name: Vérifier les pull requests
+
+# Tourne sur chaque pull request et sur chaque push d'une branche
+# autre que main (main est déjà couverte par pages.yml au merge).
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-build:
+    runs-on: ubuntu-latest
+    steps:
+      # Récupère le code du dépôt
+      - uses: actions/checkout@v4
+
+      # Installe Node.js et met en cache les dépendances npm du MVP
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Projet App Web/package-lock.json
+
+      # Installe les dépendances de façon reproductible (package-lock.json)
+      - name: Installer les dépendances
+        working-directory: Projet App Web
+        run: npm ci
+
+      # Analyse le code avec oxlint
+      - name: Lint
+        working-directory: Projet App Web
+        run: npm run lint
+
+      # Vérifie le typage TypeScript puis construit le build de production
+      - name: Build
+        working-directory: Projet App Web
+        run: npm run build
+
+  preview:
+    # Ne construit une preview que pour les pull requests (une PR a un numéro).
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      # Récupère le code du dépôt
+      - uses: actions/checkout@v4
+
+      # Installe Node.js et met en cache les dépendances npm du MVP
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Projet App Web/package-lock.json
+
+      - name: Installer les dépendances
+        working-directory: Projet App Web
+        run: npm ci
+
+      # Construit une preview isolée de la PR, servie sous son propre chemin
+      # pour ne jamais entrer en conflit avec le MVP publié sur /mvp/.
+      - name: Construire la preview de la PR
+        working-directory: Projet App Web
+        env:
+          BASE_PATH: /dev_ag_reconnect/preview/pr-${{ github.event.number }}/
+        run: npm run build
+
+      # Dépose le build en artefact téléchargeable depuis l'exécution :
+      # pratique pour relire visuellement une PR avant de la fusionner.
+      - name: Publier l'artefact de preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: mvp-pr-${{ github.event.number }}
+          path: Projet App Web/dist
+          retention-days: 7

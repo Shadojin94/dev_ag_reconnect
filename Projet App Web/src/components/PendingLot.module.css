@@ -1,0 +1,37 @@
+.pending {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.badge {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-warning-text);
+  background: var(--color-warning-bg);
+  border: var(--border-width) solid var(--color-warning-border);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
+  margin: 0 0 var(--space-3);
+}
+
+.list,
+.steps {
+  margin: 0 0 var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.steps {
+  padding-inline-start: var(--space-5);
+  list-style: decimal;
+}
+
+.list code,
+.steps code {
+  display: inline-block;
+  overflow-wrap: anywhere;
+  padding: var(--space-1) var(--space-2);
+}

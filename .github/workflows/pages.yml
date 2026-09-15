@@ -50,6 +50,8 @@ jobs:
           cp -r "Projet App Web/dist" _site/mvp
           cp "Cours/reconnect-15sept-v2/index.html" _site/cours/index.html
           cp "Cours/reconnect-15sept-v2/output/Reconnect-cours-agents-15-09-2026.pdf" _site/cours/
+          # Ajoute le deck de présentation de l'intégration
+          mkdir -p _site/deck && cp site/deck/index.html _site/deck/index.html
           touch _site/.nojekyll
 
       # Prépare l'environnement GitHub Pages
