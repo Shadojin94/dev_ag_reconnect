@@ -39,3 +39,9 @@ out/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Formation : sauvegardes locales, notes de reprise, archives, verrous Office
+sauvegardes/
+Cours/reprise/
+*.zip
+~$*

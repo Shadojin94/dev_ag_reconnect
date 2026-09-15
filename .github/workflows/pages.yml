@@ -1,0 +1,72 @@
+name: Publier les sites
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Récupère le code du dépôt
+      - uses: actions/checkout@v4
+
+      # Installe Node.js et met en cache les dépendances npm du MVP
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Projet App Web/package-lock.json
+
+      # Construit le MVP Reconnect Assist avec le bon chemin de base
+      - name: Construire le MVP
+        working-directory: Projet App Web
+        env:
+          BASE_PATH: /dev_ag_reconnect/mvp/
+        run: |
+          npm ci
+          npm run build
+
+      # Assemble tous les sites dans un dossier unique _site
+      - name: Assembler le site
+        shell: bash
+        run: |
+          mkdir -p _site/cours
+          cp site/index.html _site/index.html
+          cp -r Ashad _site/ashad
+          cp -r Nils _site/nils
+          cp -r romain _site/romain
+          cp -r Cedric _site/cedric
+          cp -r "Projet App Web/dist" _site/mvp
+          cp "Cours/reconnect-15sept-v2/index.html" _site/cours/index.html
+          cp "Cours/reconnect-15sept-v2/output/Reconnect-cours-agents-15-09-2026.pdf" _site/cours/
+          touch _site/.nojekyll
+
+      # Prépare l'environnement GitHub Pages
+      - uses: actions/configure-pages@v5
+
+      # Publie le dossier assemblé comme artefact Pages
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # Déploie l'artefact sur GitHub Pages
+      - id: deployment
+        uses: actions/deploy-pages@v4
