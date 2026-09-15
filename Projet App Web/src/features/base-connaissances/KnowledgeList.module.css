@@ -1,0 +1,40 @@
+/* Aucun token disponible dans src/styles/ : valeurs héritées et relatives uniquement. */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1em;
+}
+
+.item {
+  border: 1px solid currentColor;
+  border-radius: 0.5em;
+  padding: 1em;
+}
+
+.title {
+  font-size: 1.1em;
+  margin: 0 0 0.5em;
+}
+
+.summary {
+  margin: 0 0 0.5em;
+}
+
+.meta {
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.link {
+  color: inherit;
+}
+
+.unverified {
+  font-weight: bold;
+}
+
+.empty {
+  font-style: italic;
+}
