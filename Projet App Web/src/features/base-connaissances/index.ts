@@ -1,5 +1,6 @@
 // Lot KB-01 (Romain). Seul fichier de la feature lu par le reste de l'app.
-// Remplacer ce contenu par les exports réels, par exemple :
-// export { searchKnowledge } from './searchKnowledge'
-// // export { KnowledgeList } from './KnowledgeList'
-export {}
+export { searchKnowledge } from './searchKnowledge.ts'
+export { KnowledgeList } from './KnowledgeList.tsx'
+export { localize } from './localize.ts'
+export { KNOWLEDGE_ITEMS } from './knowledgeItems.ts'
+export { ChatWindow } from './chat/ChatWindow.tsx'

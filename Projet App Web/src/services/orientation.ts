@@ -4,14 +4,16 @@ import type {
   Organisation,
   OrientationQuery,
   OrientationService,
-} from '../types/orientation'
+} from '../types/orientation.ts'
+import { searchKnowledge } from '../features/base-connaissances/index.ts'
 
-// Façade commune (INT-01, phase 1) : stub tant que les lots ne sont pas branchés.
-// Phase 2 : brancher searchKnowledge sur features/base-connaissances
-// et findOrganisations sur features/annuaire, via leurs index.ts.
+// Façade commune (INT-01, phase 2) : base de connaissances branchée (KB-01).
+// À venir : findOrganisations sur features/annuaire via son index.ts, explain via le LLM.
+// Cycle ESM possible avec index.ts (ses composants importent cette façade) : sans danger
+// tant que searchKnowledge n'est lu qu'à l'appel, jamais au chargement du module.
 export const orientationService: OrientationService = {
-  async searchKnowledge(_query: OrientationQuery): Promise<KnowledgeItem[]> {
-    return []
+  searchKnowledge(query: OrientationQuery): Promise<KnowledgeItem[]> {
+    return searchKnowledge(query)
   },
   async findOrganisations(_query: OrientationQuery): Promise<Organisation[]> {
     return []

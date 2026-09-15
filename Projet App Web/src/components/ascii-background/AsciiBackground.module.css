@@ -1,0 +1,41 @@
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  background: radial-gradient(ellipse 70% 45% at 50% 100%, var(--color-accent-soft), transparent 70%);
+}
+
+.field,
+.probe {
+  font-family: var(--font-mono);
+  font-size: clamp(calc(var(--font-size-xs) * 0.75), 0.68vw, var(--font-size-xs));
+  line-height: var(--line-height-tight);
+  letter-spacing: 0;
+  white-space: pre;
+}
+
+.field {
+  flex: none;
+  margin: 0;
+  color: var(--color-accent);
+  opacity: 0.34;
+  mask-image: radial-gradient(ellipse 80% 130% at 50% 100%, black 45%, transparent 100%);
+}
+
+.probe {
+  position: absolute;
+  visibility: hidden;
+}
+
+@media (min-width: 48rem) {
+  .field {
+    opacity: 0.4;
+    mask-image: radial-gradient(ellipse 60% 120% at 50% 100%, black 40%, transparent 100%);
+  }
+}

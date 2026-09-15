@@ -38,7 +38,8 @@ Projet App Web/
 │   ├── ROLES.md           qui est responsable de quoi
 │   ├── WORKFLOW-GIT.md    branches, commits, pull requests
 │   ├── CONVENTIONS.md     nommage, TypeScript, CSS
-│   └── DECISIONS.md       les choix techniques et leurs raisons
+│   ├── DECISIONS.md       les choix techniques et leurs raisons
+│   └── CHAT-LLM.md        chat LLM : clé NVIDIA, lancement, mode sans IA
 ├── public/                fichiers servis tels quels
 └── src/
     ├── app/               coquille : routing, providers      → Intégration & QA

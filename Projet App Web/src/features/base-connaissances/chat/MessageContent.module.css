@@ -1,0 +1,99 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.paragraph,
+.list {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
+  overflow-wrap: anywhere;
+}
+
+.paragraph {
+  white-space: pre-line;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+  padding-left: var(--space-5);
+}
+
+.listItem {
+  padding-left: var(--space-1);
+  white-space: pre-line;
+}
+
+.listItem::marker {
+  color: var(--color-accent);
+}
+
+.bold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.citation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: calc(var(--font-size-xs) + var(--space-2));
+  height: calc(var(--font-size-xs) + var(--space-2));
+  margin-inline: var(--space-1);
+  padding-inline: var(--space-1);
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-full);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: middle;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.citation:hover {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.citation:focus-visible {
+  outline: calc(var(--space-1) / 2) solid var(--color-focus-ring);
+  outline-offset: calc(var(--space-1) / 2);
+}
+
+.caret {
+  display: inline-block;
+  width: calc(var(--space-1) * 1.5);
+  height: var(--font-size-md);
+  margin-left: var(--space-1);
+  border-radius: calc(var(--radius-sm) / 3);
+  background: var(--color-accent);
+  vertical-align: text-bottom;
+  animation: blink calc(var(--duration-ui) * 4) steps(1, end) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .citation {
+    transition: none;
+  }
+
+  .caret {
+    animation: none;
+  }
+}
