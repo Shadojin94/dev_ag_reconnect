@@ -24,8 +24,8 @@
   flex: none;
   margin: 0;
   color: var(--color-accent);
-  opacity: 0.3;
-  mask-image: radial-gradient(ellipse 55% 110% at 50% 100%, black 35%, transparent 100%);
+  opacity: 0.34;
+  mask-image: radial-gradient(ellipse 80% 130% at 50% 100%, black 45%, transparent 100%);
 }
 
 .probe {
@@ -35,6 +35,7 @@
 
 @media (min-width: 48rem) {
   .field {
-    opacity: 0.36;
+    opacity: 0.4;
+    mask-image: radial-gradient(ellipse 60% 120% at 50% 100%, black 40%, transparent 100%);
   }
 }
