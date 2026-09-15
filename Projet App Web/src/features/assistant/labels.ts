@@ -75,7 +75,56 @@ export const UI_LABELS = {
     en: 'No-AI mode: answer prepared from the local data set.',
   },
   sourceUnverified: { fr: 'source non vérifiée', en: 'unverified source' },
+
+  /* --- Conversation ---------------------------------------------------- */
+  chatTitle: { fr: 'Poser votre question', en: 'Ask your question' },
+  chatIntro: {
+    fr: 'Écrivez dans votre langue. Les réponses viennent des fiches de l’application, pas d’une intelligence artificielle.',
+    en: 'Write in your own language. Answers come from the application’s guides, not from an artificial intelligence.',
+  },
+  chatPlaceholder: {
+    fr: 'Par exemple : je cherche un endroit où dormir ce soir',
+    en: 'For example: I am looking for a place to sleep tonight',
+  },
+  chatSend: { fr: 'Envoyer', en: 'Send' },
+  chatReset: { fr: 'Effacer la conversation', en: 'Clear the conversation' },
+  chatLogLabel: { fr: 'Conversation', en: 'Conversation' },
+  chatSuggestions: { fr: 'Ou choisissez un sujet :', en: 'Or pick a topic:' },
+  chatPending: { fr: 'Je cherche…', en: 'Searching…' },
+  chatUnderstood: { fr: 'Compris comme', en: 'Understood as' },
+
+  /* --- Ce que l'assistant annonce sur sa propre compréhension ----------- */
+  noticeLanguageGuess: {
+    fr: 'Je n’ai pas reconnu la langue de ce message ; je continue dans la langue précédente.',
+    en: 'I did not recognise the language of this message; I am continuing in the previous language.',
+  },
+
+  /* --- Orientation vers les contacts ----------------------------------- */
+  contactsHeading: { fr: 'Qui contacter', en: 'Who to contact' },
+  contactsIntro: {
+    fr: 'Ces structures correspondent à votre besoin. Vérifiez les horaires avant de vous déplacer.',
+    en: 'These organisations match your need. Check opening hours before travelling.',
+  },
+  contactsNone: {
+    fr: 'Aucune structure n’est encore rattachée à ce besoin dans l’application.',
+    en: 'No organisation is linked to this need in the application yet.',
+  },
+  contactPhone: { fr: 'Téléphone', en: 'Phone' },
+  contactEmail: { fr: 'Courriel', en: 'Email' },
+  contactWebsite: { fr: 'Site', en: 'Website' },
+  contactHours: { fr: 'Horaires', en: 'Opening hours' },
+  contactLanguages: { fr: 'Langues parlées', en: 'Languages spoken' },
 } as const satisfies Record<string, LocalizedText>
 
 export type UiKey = keyof typeof UI_LABELS
 
+
+/**
+ * Écriture non couverte par le contrat : le message s'affiche dans les deux
+ * langues disponibles en même temps. Choisir l'une des deux reviendrait à
+ * supposer que l'usager la lit, ce que rien n'indique.
+ */
+export const UNSUPPORTED_SCRIPT_NOTICE = [
+  'Je ne réponds pour l’instant qu’en français et en anglais.',
+  'I currently answer in French and English only.',
+] as const

@@ -4,6 +4,7 @@
 // assemblé par la façade commune et le met en forme dans la langue choisie.
 
 import type { Lang, OrientationResult, SourceRef } from '../../../types/orientation'
+import { ContactList } from './ContactList'
 import { translate, UI_LABELS } from '../labels'
 import styles from './ResultPanel.module.css'
 
@@ -58,22 +59,10 @@ export function ResultPanel({ result, lang }: ResultPanelProps) {
         </section>
       )}
 
-      {organisations.length === 0 ? null : (
-        <section>
-          <h3 className={styles.heading}>
-            {translate(UI_LABELS.organisationsHeading, lang)}
-          </h3>
-          <ul className={styles.list}>
-            {organisations.map((organisation) => (
-              <li className={styles.item} key={organisation.id}>
-                <h4 className={styles.itemTitle}>{organisation.name}</h4>
-                <p className={styles.itemSummary}>{organisation.city}</p>
-                <SourceLink lang={lang} source={organisation.source} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      <section>
+        <h3 className={styles.heading}>{translate(UI_LABELS.contactsHeading, lang)}</h3>
+        <ContactList lang={lang} organisations={organisations} />
+      </section>
 
       {explanation.sources.length === 0 ? null : (
         <section>

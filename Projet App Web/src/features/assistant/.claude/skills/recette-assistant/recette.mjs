@@ -41,6 +41,14 @@ p.on('console', (m) => { if (m.type() === 'error') erreurs.push(m.text()); });
 
 const zone = () => p.locator('[data-testid="assistant-under-test"]');
 const bouton = (txt) => zone().getByRole('button', { name: txt, exact: true });
+const chat = () => p.locator('[data-testid="chat-under-test"]');
+const ouvrirGuide = () => p.locator('[data-view="guide"]').click();
+/** Écrit un message dans la conversation et attend la réponse. */
+async function dire(texte) {
+  await chat().locator('input[type="text"]').fill(texte);
+  await chat().getByRole('button', { name: /Envoyer|Send/ }).click();
+  await p.waitForTimeout(500);
+}
 
 try {
   await p.goto(URL, { waitUntil: 'load', timeout: 8000 });
@@ -50,6 +58,67 @@ try {
   process.exit(2);
 }
 await p.waitForTimeout(500);
+
+/* ====================== PARCOURS CONVERSATIONNEL ====================== */
+
+/* --- langue du message : le français ------------------------------------ */
+await dire('bonjour, je cherche un endroit où dormir ce soir');
+let q = await p.locator('[data-testid="chat-last-query"]').innerText();
+ok('chat  message français reconnu', q.includes('"lang":"fr"') && q.includes('"category":"hebergement"'), q.trim());
+let vu = await chat().innerText();
+ok('chat  besoin annoncé à l\'usager', vu.includes('Compris comme') && vu.includes('Hébergement'));
+ok('chat  fiche de connaissance affichée', vu.includes('hébergement d\'urgence') || vu.includes('hébergement d’urgence'));
+ok('chat  orientation vers les contacts', vu.includes('Qui contacter') && vu.includes('accueil de jour'));
+ok('chat  mode réel annoncé', vu.includes('Mode sans IA'));
+await p.screenshot({ path: `${SORTIE}/chat-francais.png`, fullPage: true });
+
+/* --- la langue suit le message, sans réglage ---------------------------- */
+await dire('I need to see a doctor');
+q = await p.locator('[data-testid="chat-last-query"]').innerText();
+ok('chat  bascule en anglais toute seule', q.includes('"lang":"en"') && q.includes('"category":"sante"'), q.trim());
+vu = await chat().innerText();
+ok('chat  réponse rendue en anglais', vu.includes('Understood as') && vu.includes('Who to contact'));
+ok('chat  fiche traduite en anglais', vu.includes('Accessing care without health cover'));
+await p.screenshot({ path: `${SORTIE}/chat-anglais.png`, fullPage: true });
+
+/* --- écriture non couverte : on le dit, dans les deux langues ----------- */
+await dire('مرحبا، أحتاج مساعدة');
+vu = await chat().innerText();
+ok('chat  écriture non couverte annoncée', vu.includes('français et en anglais') && vu.includes('French and English only'));
+
+/* --- aucune fiche : l'assistant le dit --------------------------------- */
+await dire('xyzzy plugh');
+vu = await chat().innerText();
+ok('chat  aucun résultat annoncé', vu.includes('Aucun résultat') || vu.includes('No result'));
+
+/* --- panne de la recherche --------------------------------------------- */
+await p.locator('[data-testid="chat-harness"] button').click();
+await dire('hébergement');
+vu = await chat().innerText();
+ok('chat  erreur annoncée', vu.includes('a échoué') || vu.includes('failed'));
+await p.locator('[data-testid="chat-harness"] button').click();
+
+/* --- clavier seul ------------------------------------------------------- */
+await chat().getByRole('button', { name: /Effacer|Clear/ }).click();
+await p.waitForTimeout(200);
+await chat().locator('input[type="text"]').focus();
+await p.keyboard.type('je cherche à manger');
+await p.keyboard.press('Enter');
+await p.waitForTimeout(500);
+vu = await chat().innerText();
+ok('chat  Entrée envoie le message', vu.includes('Alimentation') || vu.includes('Food'));
+
+/* --- 400 px ------------------------------------------------------------- */
+await p.setViewportSize({ width: 400, height: 900 });
+await p.waitForTimeout(300);
+const debordementChat = await p.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+ok('chat  aucun débordement à 400 px', debordementChat <= 0, `${debordementChat} px`);
+await p.screenshot({ path: `${SORTIE}/chat-mobile.png`, fullPage: true });
+await p.setViewportSize({ width: 1000, height: 900 });
+
+/* ========================= PARCOURS GUIDÉ ============================= */
+await ouvrirGuide();
+await p.waitForTimeout(300);
 
 /* --- a. le parcours produit une question valide ----------------------- */
 await bouton('Santé').click();
