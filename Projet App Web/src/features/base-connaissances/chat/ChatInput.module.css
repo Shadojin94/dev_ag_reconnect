@@ -1,0 +1,118 @@
+.wrapper {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--blur-surface));
+  box-shadow: var(--shadow-lg);
+  transition:
+    box-shadow var(--duration-ui) var(--ease-out),
+    border-color var(--duration-ui) var(--ease-out);
+}
+
+.form:focus-within {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-glow), var(--shadow-lg);
+}
+
+.textarea {
+  flex: 1;
+  box-sizing: border-box;
+  min-width: 0;
+  max-height: calc(8lh + var(--space-2) * 2);
+  margin: 0;
+  padding: var(--space-2) 0;
+  overflow-y: auto;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+  resize: none;
+}
+
+.textarea::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.button {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: calc(var(--space-6) + var(--space-2));
+  height: calc(var(--space-6) + var(--space-2));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.button:disabled {
+  background: var(--color-surface-hover);
+  color: var(--color-text-subtle);
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: calc(var(--space-1) / 2) solid var(--color-focus-ring);
+  outline-offset: calc(var(--space-1) / 2);
+}
+
+.stop {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.stop:hover:not(:disabled) {
+  background: var(--color-text-muted);
+}
+
+.icon {
+  width: var(--font-size-lg);
+  height: var(--font-size-lg);
+}
+
+.hint {
+  margin: 0;
+  color: var(--color-text-subtle);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-body);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form,
+  .button {
+    transition: none;
+  }
+
+  .button:active:not(:disabled) {
+    transform: none;
+  }
+}
