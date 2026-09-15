@@ -5,6 +5,7 @@ import { resolveCitations } from './citations.ts'
 import { formatCheckedAt } from './formatCheckedAt.ts'
 import { MessageContent } from './MessageContent.tsx'
 import type { ChatMessage, ChatMode } from './types.ts'
+import { useTypewriter } from './useTypewriter.ts'
 import styles from './ChatBubble.module.css'
 
 type ChatBubbleProps = {
@@ -18,9 +19,11 @@ const MODE_LABELS: Record<ChatMode, string> = {
 }
 
 export function ChatBubble({ message, lang }: ChatBubbleProps) {
-  // Point d'extension de l'écriture progressive (useTypewriter).
-  const displayedContent = message.content
-  const isTyping = message.status === 'streaming'
+  // Les erreurs s'affichent d'un bloc ; les réponses s'écrivent progressivement.
+  const { text: displayedContent, isTyping } = useTypewriter(
+    message.content,
+    message.role === 'assistant' && message.status !== 'error',
+  )
 
   const { cited } = useMemo(
     () => resolveCitations(displayedContent, message.contextItems),
@@ -41,10 +44,10 @@ export function ChatBubble({ message, lang }: ChatBubbleProps) {
       contextItems={message.contextItems}
       messageId={message.id}
       lang={lang}
-      showCaret={isTyping}
+      showCaret={isTyping || message.status === 'streaming'}
     />
   )
-  const showSources = message.status !== 'pending' && cited.length > 0
+  const showSources = message.status !== 'pending' && !isTyping && cited.length > 0
 
   return (
     <article className={styles.assistant} aria-label="Réponse de Reconnect Assist">
