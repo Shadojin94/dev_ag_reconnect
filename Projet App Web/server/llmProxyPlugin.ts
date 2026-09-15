@@ -13,6 +13,7 @@ export type LlmProxyOptions = {
   reasoningEffort?: string
   maxTokens?: string | number
   temperature?: string | number
+  timeoutMs?: string | number
 }
 
 type ChatMessage = { role: 'system' | 'user' | 'assistant'; content: string }
@@ -24,6 +25,7 @@ type LlmConfig = {
   reasoningEffort: string
   maxTokens: number
   temperature: number
+  timeoutMs: number
 }
 
 const ROUTE = '/api/llm/chat'
@@ -36,6 +38,7 @@ const DEFAULT_MODEL = 'moonshotai/kimi-k3'
 const DEFAULT_REASONING_EFFORT = 'medium'
 const DEFAULT_MAX_TOKENS = 4096
 const DEFAULT_TEMPERATURE = 1
+const DEFAULT_TIMEOUT_MS = 60_000
 
 export function llmProxyPlugin(options: LlmProxyOptions = {}): Plugin {
   const config = resolveConfig(options)
@@ -64,6 +67,7 @@ function resolveConfig(options: LlmProxyOptions): LlmConfig {
     reasoningEffort: (options.reasoningEffort ?? DEFAULT_REASONING_EFFORT).trim(),
     maxTokens: Math.floor(parseNumber(options.maxTokens, DEFAULT_MAX_TOKENS, 1)),
     temperature: parseNumber(options.temperature, DEFAULT_TEMPERATURE, 0),
+    timeoutMs: Math.floor(parseNumber(options.timeoutMs, DEFAULT_TIMEOUT_MS, 1000)),
   }
 }
 
@@ -111,6 +115,21 @@ async function handleChat(req: IncomingMessage, res: ServerResponse, config: Llm
     if (!res.writableFinished) controller.abort()
   })
 
+  // Modèle muet (file d'attente NVIDIA saturée) : délai avant la réponse puis entre deux fragments
+  const timeoutMessage = `Le modèle ${config.model} ne répond pas (aucune donnée depuis ${Math.round(config.timeoutMs / 1000)} s). Réessayez plus tard ou changez LLM_MODEL.`
+  let timedOut = false
+  let timer: NodeJS.Timeout | undefined
+  const restartTimer = () => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      timedOut = true
+      logger.warn(`[llm-proxy] ${timeoutMessage}`)
+      controller.abort()
+    }, config.timeoutMs)
+  }
+  restartTimer()
+  res.on('close', () => clearTimeout(timer))
+
   const payload = {
     model: config.model,
     messages: parsed,
@@ -133,6 +152,7 @@ async function handleChat(req: IncomingMessage, res: ServerResponse, config: Llm
       signal: controller.signal,
     })
   } catch (error) {
+    if (timedOut) return sendJson(res, 504, { error: timeoutMessage })
     if (controller.signal.aborted) return
     logger.warn(`[llm-proxy] service LLM injoignable : ${errorMessage(error)}`)
     return sendJson(res, 502, { error: 'Le service LLM est injoignable.' })
@@ -141,6 +161,7 @@ async function handleChat(req: IncomingMessage, res: ServerResponse, config: Llm
   if (!upstream.ok || !upstream.body) {
     const status = upstream.status >= 400 && upstream.status <= 599 ? upstream.status : 502
     const detail = await readErrorDetail(upstream, config.apiKey)
+    clearTimeout(timer)
     logger.warn(`[llm-proxy] le service LLM a répondu ${upstream.status}${detail ? ` : ${detail}` : ''}`)
     return sendJson(res, status, {
       error: `Le service LLM a répondu ${upstream.status}.`,
@@ -160,11 +181,19 @@ async function handleChat(req: IncomingMessage, res: ServerResponse, config: Llm
     while (true) {
       const { done, value } = await reader.read()
       if (done) break
+      restartTimer()
       // Contre-pression : on attend que le client absorbe avant de relire
       if (!res.write(value)) await once(res, 'drain', { signal: controller.signal })
     }
+    clearTimeout(timer)
     res.end()
   } catch (error) {
+    clearTimeout(timer)
+    if (timedOut) {
+      // Événement d'erreur au format OpenAI : le front l'affiche au lieu d'attendre
+      res.end(`\n\ndata: ${JSON.stringify({ error: { message: timeoutMessage } })}\n\n`)
+      return
+    }
     if (!controller.signal.aborted) {
       logger.warn(`[llm-proxy] flux LLM interrompu : ${errorMessage(error)}`)
     }

@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
         reasoningEffort: env.LLM_REASONING_EFFORT,
         maxTokens: env.LLM_MAX_TOKENS,
         temperature: env.LLM_TEMPERATURE,
+        timeoutMs: env.LLM_TIMEOUT_MS,
       }),
     ],
     // Chemin de base du site publié (GitHub Pages : /dev_ag_reconnect/mvp/).

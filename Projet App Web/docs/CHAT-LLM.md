@@ -53,6 +53,7 @@ jamais au bundle.
 | `LLM_REASONING_EFFORT` | `medium` | effort de raisonnement ; vide = paramètre non envoyé |
 | `LLM_MAX_TOKENS` | `4096` | longueur maximale de la réponse |
 | `LLM_TEMPERATURE` | `1` | température d'échantillonnage |
+| `LLM_TIMEOUT_MS` | `60000` | délai sans données du modèle (avant la réponse ou entre deux fragments) ; dépassé = erreur `504` affichée |
 
 ## Mode sans IA
 
