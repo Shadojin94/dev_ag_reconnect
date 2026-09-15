@@ -26,29 +26,42 @@ Next.js (front + backend d'un coup, trop de concepts nouveaux en parallèle).
 
 ## ADR-002 — Navigation entre écrans
 
-**Statut : à trancher**
+**2026-09-15 — adopté**
 
-Une app de démo a plusieurs écrans. Rien n'est installé pour l'instant.
+État local et routage par hash (`#/`, `#/romain`, `#/nils`, `#/ashad`) implémenté
+dans `src/app/`, zéro dépendance.
 
-- **React Router** — la référence, URL partageables, bouton retour fonctionnel,
-  une dépendance de plus ;
-- **état local dans `app/`** — zéro dépendance, mais pas d'URL par écran,
-  et tout le monde modifie le même fichier : conflits garantis.
+**Pourquoi :** l'app de démo a un nombre fixe et connu d'écrans (accueil + une page
+par apprenant) pour une seule séance. Le hash routing donne une URL par écran
+(partageable, bouton retour fonctionnel) sans rien installer, et fonctionne tel
+quel sous `/mvp/` sur GitHub Pages sans configuration de serveur.
 
-À décider avant la première feature à deux écrans. Le rôle Intégration tranche
-et écrit le résultat ici.
+**Écarté :** React Router — la référence pour une vraie navigation, mais c'est une
+dépendance de plus à installer, apprendre et maintenir pour un seul jour de séance ;
+aucun des bénéfices supplémentaires (routes imbriquées, chargement différé, garde
+de navigation) n'est utile ici.
 
 ---
 
 ## ADR-003 — Origine des données
 
-**Statut : à trancher**
+**2026-09-15 — adopté**
 
-Vrai backend, API publique, ou données de démo en dur ?
+Fixtures `.ts` typées derrière la façade `src/services/orientation.ts`, signatures
+async conservées (`Promise<...>` même sans appel réseau réel).
 
-Conséquence directe sur le rôle Données & Services : sans backend, les services
-renvoient des fixtures — mais gardent la même signature typée, pour que le
-branchement d'une vraie API ne change rien au reste de l'app.
+**Pourquoi :** aucun backend n'est prêt ni validé pour la séance ; les fixtures
+permettent de démontrer le parcours complet (besoin → explication → structure →
+contact) en mode annoncé « sans IA ». Garder les signatures async — au lieu de
+fonctions synchrones — signifie que brancher une vraie API plus tard ne change
+aucun appelant : seul le corps des fonctions dans `src/services/orientation.ts`
+change.
+
+**Écarté :** backend réel ou API publique pour la démo — aucun endpoint serveur
+n'était prêt et validé au moment de trancher (règle du ticket #1 : LLM connecté
+seulement si un endpoint serveur est prêt et validé, sinon mode sans IA) ;
+fonctions synchrones — auraient forcé une réécriture des appelants au moment de
+brancher une vraie source de données.
 
 ---
 

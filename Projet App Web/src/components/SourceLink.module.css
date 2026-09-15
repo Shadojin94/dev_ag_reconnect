@@ -1,0 +1,13 @@
+.source {
+  display: inline;
+  font-size: var(--font-size-sm);
+}
+
+.meta {
+  color: var(--color-text-muted);
+}
+
+.unverified {
+  color: var(--color-warning-text);
+  font-weight: var(--font-weight-medium);
+}

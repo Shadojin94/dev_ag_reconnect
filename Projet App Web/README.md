@@ -79,6 +79,13 @@ git push -u origin feat/ma-feature
 # puis ouvrir la PR sur GitHub
 ```
 
+## Publier et voir l'app
+
+Une fois ta PR fusionnée sur `main`, la publication est automatique : GitHub Pages
+reconstruit et republie le MVP en ~2 minutes (onglet **Actions** pour suivre).
+URL publique : https://shadojin94.github.io/dev_ag_reconnect/mvp/
+Le détail complet, de la fin du lot au lien public : [`docs/PROCESS-LIVRAISON.md`](docs/PROCESS-LIVRAISON.md).
+
 Le détail — nommage des branches, format des commits, résolution de conflits —
 dans **[`docs/WORKFLOW-GIT.md`](docs/WORKFLOW-GIT.md)**.
 
